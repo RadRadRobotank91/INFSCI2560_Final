@@ -16,7 +16,8 @@ function membershipOptions() {
 		membershipType = type;
 		document.getElementById("plans").innerHTML = '<b>Plan(s): </b>' + membershipType;
 		document.getElementById("amountDue").innerHTML = '<b>Total Amount Due: </b>$' + membershipAmountDue;
-		pickupLocations(membershipType);
+		//Place selection list on page
+		document.getElementById("standardCSALocations").innerHTML = '<select id="standardLocations><option value="eastLiberty">East Liberty Farmers Market - Monday Afternoon</option><option value="glenshaw">Glenshaw Presbyterian Church - Thursday Afternoon</option><option value="mountLebanon">Mount Lebanon Hillaire Drive - Monday Afternoon</option><option value="owf">One Woman Farm - Thursday Afternoon</option><option value="squirrelHill">Squirrel Hill Farmers Market = Sunday Mornings</option><option value="stPaul">St. Pauls United Methodist Church - Monday Afternoon</option></select>';	
 	} else if(selected == "biweeklyStandard") {
 		signDate();
 		amount = 325;
@@ -25,7 +26,8 @@ function membershipOptions() {
 		membershipType = type;
 		document.getElementById("plans").innerHTML = '<b>Plan(s): </b>' + membershipType;
 		document.getElementById("amountDue").innerHTML = '<b>Total Amount Due: </b>$' + membershipAmountDue;
-		pickupLocations(membershipType);
+		//Place selection list on page
+		document.getElementById("standardCSALocations").innerHTML = '<select id="standardLocations><option value="eastLiberty">East Liberty Farmers Market - Monday Afternoon</option><option value="glenshaw">Glenshaw Presbyterian Church - Thursday Afternoon</option><option value="mountLebanon">Mount Lebanon Hillaire Drive - Monday Afternoon</option><option value="owf">One Woman Farm - Thursday Afternoon</option><option value="squirrelHill">Squirrel Hill Farmers Market = Sunday Mornings</option><option value="stPaul">St. Pauls United Methodist Church - Monday Afternoon</option></select>';
 	} else if(selected == "largeMarket") {
 		signDate();
 		amount = 500;
@@ -34,7 +36,8 @@ function membershipOptions() {
 		membershipType = type;
 		document.getElementById("plans").innerHTML = '<b>Plan(s): </b>' + membershipType;
 		document.getElementById("amountDue").innerHTML = '<b>Total Amount Due: </b>$' + membershipAmountDue;
-		pickupLocations(membershipType);
+		//Place selection list on page
+		document.getElementById("marketCSALocations").innerHTML = '<select id="marketLocations"><option value="eastLiberty>East Liberty Farmers Market - Monday Afternoon</option><option value="marketSquare">Market Square Farmers Market - Thursday Afternoon</option><option value="squirrelHill">Squirrel Hill Farmers Market</option></select>';
 	} else if(selected == "smallMarket") {
 		signDate();
 		amount = 300;
@@ -43,7 +46,8 @@ function membershipOptions() {
 		membershipType = type;
 		document.getElementById("plans").innerHTML = '<b>Plan(s): </b>' + membershipType;
 		document.getElementById("amountDue").innerHTML = '<b>Total Amount Due: </b>$' + membershipAmountDue;
-		pickupLocations(membershipType);
+		//Place selection list on page
+		document.getElementById("marketCSALocations").innerHTML = '<select id="marketLocations"><option value="eastLiberty>East Liberty Farmers Market - Monday Afternoon</option><option value="marketSquare">Market Square Farmers Market - Thursday Afternoon</option><option value="squirrelHill">Squirrel Hill Farmers Market</option></select>';
 	} else if(selected == "coffee") {
 		coffeeOptions();
 	}
@@ -194,7 +198,7 @@ function coffeeOptions() {
 			//Place amount due on page
 			document.getElementById("fullAmount").innerHTML = '<input type="radio" name="check" value="totalCheck" />I will send a check for $' + membershipAmountDue + '.';
 			document.getElementById("halfAmount").innerHTML = '<input type="radio" name="check" value="halfCheck" />I will send a check for $' + (membershipAmountDue / 2) + ' by April 30th.  The remaining $' + (membershipAmountDue / 2) + ' will be sent by May 30th.';
-			pickupLocations(membershipType);
+			//Place selection list on page
 		} else if(coffeeSelected == "decaf") {
 			coffeeType = " Bi-Weekly 1lb. Decaffeinated Organic Coffee";
 			coffeeAmount = 138;
@@ -203,17 +207,11 @@ function coffeeOptions() {
 			document.getElementById("plans").innerHTML = '<b>Plan(s): </b>' + membershipType;
 			document.getElementById("amountDue").innerHTML = '<b>Total Amount Due: </b>$' + membershipAmountDue;
 			//Place amount due on page
+			document.getElementById("standardCSALocations").innerHTML = '<select id="standardLocations><option value="eastLiberty">East Liberty Farmers Market - Monday Afternoon</option><option value="glenshaw">Glenshaw Presbyterian Church - Thursday Afternoon</option><option value="mountLebanon">Mount Lebanon Hillaire Drive - Monday Afternoon</option><option value="owf">One Woman Farm - Thursday Afternoon</option><option value="squirrelHill">Squirrel Hill Farmers Market = Sunday Mornings</option><option value="stPaul">St. Pauls United Methodist Church - Monday Afternoon</option></select>';
 			document.getElementById("fullAmount").innerHTML = '<input type="radio" name="check" value="totalCheck" />I will send a check for $' + membershipAmountDue + '.';
 			document.getElementById("halfAmount").innerHTML = '<input type="radio" name="check" value="halfCheck" />I will send a check for $' + (membershipAmountDue / 2) + ' by April 30th.  The remaining $' + (membershipAmountDue / 2) + ' will be sent by May 30th.';			
-			pickupLocations(membershipType);
+			//Place selection list on page
+			document.getElementById("standardCSALocations").innerHTML = '<select id="standardLocations><option value="eastLiberty">East Liberty Farmers Market - Monday Afternoon</option><option value="glenshaw">Glenshaw Presbyterian Church - Thursday Afternoon</option><option value="mountLebanon">Mount Lebanon Hillaire Drive - Monday Afternoon</option><option value="owf">One Woman Farm - Thursday Afternoon</option><option value="squirrelHill">Squirrel Hill Farmers Market = Sunday Mornings</option><option value="stPaul">St. Pauls United Methodist Church - Monday Afternoon</option></select>';
 		}
 	}
-}
-
-//Used to populate the form to determine pickup locations
-function pickupLocations(memType) {
-	//If-else statement is used to determine which dropdown list will be placed on page
-	if(memType == "Weekly Standard Vegetable;") {
-
-	} else
 }
