@@ -581,7 +581,7 @@ div#footer div.col1 p {
 	
 /*css iamges sprites*/
 span.imagesprite {
-	background-image:url(IconsLowRes.gif);
+	background-image:url(../images/IconsLowRes.gif);
 	display:block;
 	float:left;
 	width:65px;
@@ -596,7 +596,7 @@ span.imagesprite-barn {
 }
 
 span.veggiesprite {
-	background-image:url(veggiesprite.jpg);
+	background-image:url(../images/veggiesprite.jpg);
 	display:block;
 	float:left;
 	width:40px;
