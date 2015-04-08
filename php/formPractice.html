@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Form PHP Practice</title>
+	</head>
+	<body>
+		<form action="insertProcess.php" method="post">
+			<p>Select a CSA Membership.</p>
+			<select name="membership">
+				<option value="0">Weekly Standard Vegetable CSA</option>
+				<option value="1">Bi-Weekly Standard Vegetable CSA</option>
+				<option value="2">CSA Market Membership - Large</option>
+				<option value="3">CSA Market Membership - Small</option>
+				<option value="5">None - Coffee Only</option>
+			</select>
+			<br />
+			<p>Add a coffee option.</p>
+			<select name="coffee">
+				<option value="0">None</option>
+				<option value="1">Bi-Weekly 1lb. Organic Coffee - Whole Bean</option>
+				<option value="2">Bi-Weekly 1lb. Organic Coffee - Ground Bean</option>
+				<option value="3">Bi-Weekly 1lb. Decaffeinated Organic Coffee - Whole Bean</option>
+				<option value="4">Bi-Weekly 1lb. Decaffeinated Organic Coffee - Ground Bean</option>
+			</select>
+			<br />
+			<p>Account Information (All fields required)</p>
+			<p>First Name: <input type="text" name="fname" /></p>
+			<p>Last Name: <input type="text" name="lname" /></p>
+			<p>Address: <input type="text" name="address" /></p>
+			<p>City: <input type="text" name="city" /></p>
+			<p>State: <input type="text" name="state" /></p>
+			<p>Zip: <input type="text" name="zip" /></p>
+			<p>Phone: <input type="text" name="phone" /></p>
+			<p>Email: <input type="text" name="email" /></p>
+			<br />
+			<p>Are you a part of the OWF Workshare?<br />
+				<input type="radio" name="workshare" value="yes" />Yes
+				<br />
+				<input type="radio" name="workshare" value="no" />No
+			</p>
+			<br />
+			<input type="submit" value="Test PHP" />
+		</form>
+	</body>
+</html>
