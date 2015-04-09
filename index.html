@@ -127,24 +127,14 @@
       	font-size:14px;
         color: gray;  
       }
-      .xmp-Submit_News_Form { padding: 10px 5px 5px 5px; }
-      .xmp-Submit_News_Form .xmp-form-row { margin: 3px;, padding: 3px; clear:left;}
-      .form-label { display:block; float:left; width: 110px;text-align: right; margin-right: 5px; }
-      .xmp-Submit_News_Form .xmp-button { margin-right: 5px; }
-      .row input[type="text"], .row input[type="email"] { width:300px; height:30px; }
-      .row input[type="text"].extendInput { width:415px; }
-      .row input[type="email"] { height:30px; }
-      .row table tbody tr td { width:150px; }
-      .row { margin: 5px 3px; padding: 3px; clear:left;}
-      .row select { width:310px; height:30px; }
 
-      .xmp-button {
-        margin-right: 5px;
-        margin-top: 30px;
-        margin-left:12px
-      }
-      input:focus.notification, textarea:focus.notification {border:3px solid #d55b5b;background-color:#ffcdcd;padding:5px;}
-      .status {margin-left:170px;}
+      .form-label { display:block; float:left; width: 110px;text-align: right; margin-right: 5px; height:40px; line-height: 45px;}
+      .row input[type="text"], .row input[type="email"] { width:300px; height:40px; font-size:14px; }
+      .row input[type="text"].extendInput { width:415px; height:40px; font-size:14px; }
+      .row { margin: 5px 3px; clear:left;}
+      .row select { width:310px; height:40px; font-size:14px; }
+      h3 { margin-top: 25px; }
+      h3.first { margin-top:10px;}
 
 /*------------------------------------------------*/
 /* TOOLTIP */ 
@@ -161,19 +151,25 @@ span.question {
   color: White;
   font-size: 11px;
   font-weight: normal;
+  font-family: sans-serif;
   border-radius: 6px;
   text-align: center;
   position: relative;
 }
-span.question:hover { background-color: #3D6199; }
+span.question:hover { background-color: #D5E1F5; }
 div.tooltip {
-  background-color: #3D6199;
-  color: White;
+  background-color: #D5E1F5;
+  color: #000;
+  font-size:14px;
+  line-height: 22px;
+  font-family: sans-serif;
   position: absolute;
   left: 25px;
   top: -25px;
   z-index: 1000000;
-  width: 250px;
+  width: 500px;
+  padding:20px;
+  text-align: left;
   border-radius: 5px;
 }
 div.tooltip:before {
@@ -203,7 +199,7 @@ div.tooltip p {
 	$(document).ready(function(){
       /* Tooltip Plug-ins */ 
       $("span.csaTT").hover(function () {
-        $(this).append('<div class="tooltip"><ul><li>A Standard Vegetable CSA is a weekly (23 week) or bi-weekly (12 week) pick-up of a box of fresh, local vegetables.</li><li>A OWF CSA Market Membership lets you get to pick out exactly what and how much you want for the week from an OWF farmers market stand. One Woman Farm will add an additional 7&#37; credit to your account.</li><li>A Coffee CSA s a bi-weekly (12 week) pick-up of 1lb of organic coffee. It can be added to your Standard Vegetable CSA or Market Membership, or selected as a standalone CSA plan.</li></ul></div>');
+        $(this).append('<div class="tooltip"><ul><li><strong>Standard Vegetable CSA</strong> is a weekly (23 week) or bi-weekly (12 week) pick-up of a box of fresh, local vegetables.</li><li><strong>OWF CSA Market Membership</strong> lets you pick out exactly what and how much you want for the week from OWF farmers market stands. One Woman Farm will add an additional 7&#37; credit to your account.</li><li><strong>Coffee CSA</strong> is a bi-weekly (12 week) pick-up of 1lb of organic coffee. It can be added to your Standard Vegetable CSA or Market Membership, or selected as a standalone CSA plan.</li></ul></div>');
       }, function () {
         $("div.tooltip").remove();
       });
@@ -323,7 +319,6 @@ div.tooltip p {
 						</div>
 						<div class="col2 span-10">
 							<h2>CSA Registration</h2>
-							<br />
 							<form>
 								<h3>Select a CSA Membership</h3>
 								<div class="row">
@@ -362,16 +357,16 @@ div.tooltip p {
 								<div class="row"><label>Name(s) of <em>other people designated to use this CSA</label><br /><input class="extendInput" type="text" name="otherMembers" id="otherMembers" placeholder="Your Family Member's Name, Your Friend's Name, etc." maxlength="255" value="" required/></div>
 
 								<h3>Account Information</h3>
-								<div class="row"><label class="form-label">First Name</label><input type="text" name="firstName" id="firstName" placeholder="John" maxlength="50" value="" required /></div>
-								<div class="row"><label class="form-label">Last Name</label><input type="text" name="lastName" id="lastName" placeholder="Smith" maxlength="75"  value="" required /></div>
-								<div class="row"><label class="form-label">Address</label><input type="text" name="address" id="address" placeholder="123 Your Street, Apt#2" maxlength="255" value="" required /></div>
-								<div class="row"><label class="form-label">City</label><input type="text" name="city" id="city" value="" placeholder="Pittsburgh" maxlength="255" required /></div>
-								<div class="row"><label class="form-label">State</label><input type="text" name="state" maxlength="2"  id="state" value="" placeholder="PA" required /></div>
-								<div class="row"><label class="form-label">Zip</label><input type="text" name="zip" id="zip" placeholder="15227" maxlength="12" value="" required /></div>
-								<div class="row"><label class="form-label">Phone</label><input type="text" name="phoneNumber" id="phoneNumber" placeholder="555-555-5555" maxlength="20" value="" required /></div>
-								<div class="row"><label class="form-label">E-mail</label><input type="email" name="email" id="email" placeholder="jsmith@example.com" maxlength="255" value="" required /></div>
-								<div class="row"><label class="form-label">Verify E-mail</label><input type="email" name="email2" id="email2" placeholder="jsmith@example.com" maxlength="255" value="" required /></div>
-								<div class="row"><label>How did you hear about One Woman Farm?</label><br />
+								<div class="row"><label class="form-label">First Name&nbsp;&nbsp;</label><input type="text" name="firstName" id="firstName" placeholder="John" maxlength="50" value="" required /></div>
+								<div class="row"><label class="form-label">Last Name&nbsp;&nbsp;</label><input type="text" name="lastName" id="lastName" placeholder="Smith" maxlength="75"  value="" required /></div>
+								<div class="row"><label class="form-label">Address&nbsp;&nbsp;</label><input type="text" name="address" id="address" placeholder="123 Your Street, Apt#2" maxlength="255" value="" required /></div>
+								<div class="row"><label class="form-label">City&nbsp;&nbsp;</label><input type="text" name="city" id="city" value="" placeholder="Pittsburgh" maxlength="255" required /></div>
+								<div class="row"><label class="form-label">State&nbsp;&nbsp;</label><input type="text" name="state" maxlength="2"  id="state" value="" placeholder="PA" required /></div>
+								<div class="row"><label class="form-label">Zip&nbsp;&nbsp;</label><input type="text" name="zip" id="zip" placeholder="15227" maxlength="12" value="" required /></div>
+								<div class="row"><label class="form-label">Phone&nbsp;&nbsp;</label><input type="text" name="phoneNumber" id="phoneNumber" placeholder="555-555-5555" maxlength="20" value="" required /></div>
+								<div class="row"><label class="form-label">E-mail&nbsp;&nbsp;</label><input type="email" name="email" id="email" placeholder="jsmith@example.com" maxlength="255" value="" required /></div>
+								<div class="row"><label class="form-label">Verify E-mail&nbsp;&nbsp;</label><input type="email" name="email2" id="email2" placeholder="jsmith@example.com" maxlength="255" value="" required /></div>
+								<div class="row"><br /><label>How did you hear about One Woman Farm?</label><br />
 									<select id="marketing">
 										<option value="" selected>Select</option>
 										<option value="1">Marketing1</option>
@@ -381,7 +376,7 @@ div.tooltip p {
 										<option value="5">Other</option>
 									</select><br />
 									<input type="text" name="marketingOther" placeholder="Referral Name or Other" maxlength="255"  value="" required /></div>
-								<br />
+								
 
 								
 
