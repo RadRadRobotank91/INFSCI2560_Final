@@ -6,11 +6,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	
 	<title>Sign up Now! | One Woman Farm</title>
-	
+
 	<link rel="alternate" type="application/rss+xml" title="One Woman Farm" href="http://www.onewomanfarm.com/rss.xml" />
-	
-	<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection">
-	
+	<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection">	
 	<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
 	
 	<!--[if IE]>
@@ -18,23 +16,14 @@
 		<![endif]-->
 
 		<link rel="stylesheet" type="text/css" href="css/publicglobal.css" media="screen, projection" />
-
 		<link rel="stylesheet" type="text/css" href="css/superfish.css" media="screen, projection" />
-
 		<link rel="stylesheet" type="text/css" href="css/superfish-vertical.css" media="screen, projection" />
-
 		<link rel="stylesheet" type="text/css" href="css/default.css" media="screen, projection" />
-
 		<link  rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.custom.min.css" media="screen, projection" />
-
 		<script src="js/jquery/jquery.js" type="text/javascript"></script>
-
 		<script src="js/superfish.js" type="text/javascript"></script>
-
 		<script src="js/form.js" type="text/javascript"></script>
-
 		<link href="css/content.css" rel="stylesheet" type="text/css" media="screen,tv,projection" />
-
 		<script type="text/javascript"> 
 		$(document).ready(function(){ 
 			$("ul.sf-menu").superfish(); 
@@ -118,6 +107,108 @@
 		background-color:transparent;
 	}
 	</style>
+	<style type="text/css">
+      ::-webkit-input-placeholder {
+      	font-size:14px;
+        color: gray;
+      }
+
+      :-moz-placeholder { /* Firefox 18- */
+        font-size:14px;
+        color: gray;  
+      }
+
+      ::-moz-placeholder {  /* Firefox 19+ */
+      	font-size:14px;
+        color: gray;  
+      }
+
+      :-ms-input-placeholder {  
+      	font-size:14px;
+        color: gray;  
+      }
+      .xmp-Submit_News_Form { padding: 10px 5px 5px 5px; }
+      .xmp-Submit_News_Form .xmp-form-row { margin: 3px;, padding: 3px; clear:left;}
+      .form-label { display:block; float:left; width: 110px;text-align: right; margin-right: 5px; }
+      .xmp-Submit_News_Form .xmp-button { margin-right: 5px; }
+      .row input[type="text"], .row input[type="email"] { width:300px; height:30px; }
+      .row input[type="text"].extendInput { width:415px; }
+      .row input[type="email"] { height:30px; }
+      .row table tbody tr td { width:150px; }
+      .row { margin: 5px 3px; padding: 3px; clear:left;}
+      .row select { width:310px; height:30px; }
+
+      .xmp-button {
+        margin-right: 5px;
+        margin-top: 30px;
+        margin-left:12px
+      }
+      input:focus.notification, textarea:focus.notification {border:3px solid #d55b5b;background-color:#ffcdcd;padding:5px;}
+      .status {margin-left:170px;}
+
+/*------------------------------------------------*/
+/* TOOLTIP */ 
+/* http://www.davidjrush.com/blog/2011/12/simple-jquery-tooltip/ */
+/*------------------------------------------------*/   
+
+span.question {
+  cursor: pointer;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: #89A4CC;
+  line-height: 16px;
+  color: White;
+  font-size: 11px;
+  font-weight: normal;
+  border-radius: 6px;
+  text-align: center;
+  position: relative;
+}
+span.question:hover { background-color: #3D6199; }
+div.tooltip {
+  background-color: #3D6199;
+  color: White;
+  position: absolute;
+  left: 25px;
+  top: -25px;
+  z-index: 1000000;
+  width: 250px;
+  border-radius: 5px;
+}
+div.tooltip:before {
+  border-color: transparent #3D6199 transparent transparent;
+  border-right: 6px solid #3D6199;
+  border-style: solid;
+  border-width: 6px 6px 6px 0px;
+  content: "";
+  display: block;
+  height: 0;
+  width: 0;
+  line-height: 0;
+  position: absolute;
+  top: 40%;
+  left: -6px;
+}
+div.tooltip p {
+  margin: 10px;
+  color: White;
+  text-align:left;
+  font-weight:normal;
+}
+    
+    </style>
+    <script>
+
+	$(document).ready(function(){
+      /* Tooltip Plug-ins */ 
+      $("span.csaTT").hover(function () {
+        $(this).append('<div class="tooltip"><ul><li>A Standard Vegetable CSA is a weekly (23 week) or bi-weekly (12 week) pick-up of a box of fresh, local vegetables.</li><li>A OWF CSA Market Membership lets you get to pick out exactly what and how much you want for the week from an OWF farmers market stand. One Woman Farm will add an additional 7&#37; credit to your account.</li><li>A Coffee CSA s a bi-weekly (12 week) pick-up of 1lb of organic coffee. It can be added to your Standard Vegetable CSA or Market Membership, or selected as a standalone CSA plan.</li></ul></div>');
+      }, function () {
+        $("div.tooltip").remove();
+      });
+	});
+    </script>
 </head>
 <body>
 	<div id="site_wrap" class="">
@@ -234,67 +325,84 @@
 							<h2>CSA Registration</h2>
 							<br />
 							<form>
-								<h3>Account Information</h3>
-								<p>First Name: <input type="text" name="firstName" id="firstName" value=""required /></p>
-								<p>Last Name: <input type="text" name="lastName" id="lastName" value="" required /></p>
-								<p>Address: <input type="text" name="address1" id="address1" value="" required /></p>
-								<p>Address 2: <input type="text" name="address2" id="address2" value="" /></p>
-								<p>City: <input type="text" name="city" id="city" value="" required /></p>
-								<p>State: <input type="text" name="state" id="state" value="" required /></p>
-								<p>Zip: <input type="text" name="zip" id="zip" value="" required /></p>
-								<p>Phone: <input type="text" name="phoneNumber" id="phoneNumber" value="" required /></p>
-								<p>E-mail: <input type="email" name="email" id="email" value="" required /></p>
-								<p>Verify E-mail: <input type="email" name="email2" id="email2" value="" required /></p>
-								<p>Name(s) of people designated to use this CSA: <input type="text" name="otherMembers" id="otherMembers" value="" /></p>
-								<p>How did you hear about One Woman Farm? <input type="text" name="hearAboutUs" value="" value="" required /></p>
-								<br />
-
-								<h3>Select a CSA membership</h3>
-								<ul>
-									<li>A standard CSA  is a weekly or bi-weekly delivery of vegetables to a pick-up location of your choice.</li>
-									<li>A market membership gives you a credit to spend at local farmer's markets.</li>
-									<li>A coffee only option is available as well.</li>
-								</ul>
+								<h3>Select a CSA Membership</h3>
+								<div class="row">
+								<label>Choose a CSA&nbsp;&nbsp;<span class="question csaTT">?</span></label><br />
 								<select id="membership" onchange='membershipOptions();'>
 									<option value="">Select</option>
-									<option value="weeklyStandard">Weekly Standard Vegetable - $550</option>
-									<option value="biweeklyStandard">Bi-Weekly Standard Vegetable - $325</option>
-									<option value="largeMarket">Large Market Membership - $500</option>
-									<option value="smallMarket">Small Market Membership - $300</option>
-									<option value="coffee">Coffee Only - None (See below)</option>
+									<option value="weeklyStandard">$550 - Weekly Standard Vegetable</option>
+									<option value="biweeklyStandard">$325 - Bi-Weekly Standard Vegetable</option>
+									<option value="largeMarket">$500 - Large Market Membership</option>
+									<option value="smallMarket">$300 - Small Market Membership</option>
+									<option value="coffee">Coffee Only - No Vegetable Option</option>
 								</select>
-								<br />
+								</div>
+
+
+								<div class="row">
+								<label>Add a coffee option</label><br />
 								<select id="coffeeSelection" onchange='coffeeOptions();'>
 									<option value="none">None</option>
-									<option value="caff">Bi-Weekly 1lb. Organic Coffee - $126</option>
-									<option value="decaf">Bi-Weekly 1lb. Decaffeinated Organic Coffee - $138</option>
+									<option value="caff">$126 - Bi-Weekly 1lb. Organic Coffee</option>
+									<option value="decaf">$138 - Bi-Weekly 1lb. Decaffeinated Organic Coffee</option>
 								</select>
+								</div>
+								<div class="row">
+									<div id="coffee"></div>
+								</div>
+
+								<h3>Primary Pick-up Location</h3>
+								<a href="#" target="_blank">View Locations on Google Maps</a>
+								<div class="row">
+									<div id="standardCSALocations"></div>
+								</div>
+								<div class="row">
+									<div id="marketCSALocations"></div>
+								</div>
+								<div class="row"><label>Name(s) of <em>other people designated to use this CSA</label><br /><input class="extendInput" type="text" name="otherMembers" id="otherMembers" placeholder="Your Family Member's Name, Your Friend's Name, etc." maxlength="255" value="" required/></div>
+
+								<h3>Account Information</h3>
+								<div class="row"><label class="form-label">First Name</label><input type="text" name="firstName" id="firstName" placeholder="John" maxlength="50" value="" required /></div>
+								<div class="row"><label class="form-label">Last Name</label><input type="text" name="lastName" id="lastName" placeholder="Smith" maxlength="75"  value="" required /></div>
+								<div class="row"><label class="form-label">Address</label><input type="text" name="address" id="address" placeholder="123 Your Street, Apt#2" maxlength="255" value="" required /></div>
+								<div class="row"><label class="form-label">City</label><input type="text" name="city" id="city" value="" placeholder="Pittsburgh" maxlength="255" required /></div>
+								<div class="row"><label class="form-label">State</label><input type="text" name="state" maxlength="2"  id="state" value="" placeholder="PA" required /></div>
+								<div class="row"><label class="form-label">Zip</label><input type="text" name="zip" id="zip" placeholder="15227" maxlength="12" value="" required /></div>
+								<div class="row"><label class="form-label">Phone</label><input type="text" name="phoneNumber" id="phoneNumber" placeholder="555-555-5555" maxlength="20" value="" required /></div>
+								<div class="row"><label class="form-label">E-mail</label><input type="email" name="email" id="email" placeholder="jsmith@example.com" maxlength="255" value="" required /></div>
+								<div class="row"><label class="form-label">Verify E-mail</label><input type="email" name="email2" id="email2" placeholder="jsmith@example.com" maxlength="255" value="" required /></div>
+								<div class="row"><label>How did you hear about One Woman Farm?</label><br />
+									<select id="marketing">
+										<option value="" selected>Select</option>
+										<option value="1">Marketing1</option>
+										<option value="2">Marketing2</option>
+										<option value="3">Marketing3</option>
+										<option value="4">Marketing4</option>
+										<option value="5">Other</option>
+									</select><br />
+									<input type="text" name="marketingOther" placeholder="Referral Name or Other" maxlength="255"  value="" required /></div>
 								<br />
 
-								<div id="coffee"></div>
+								
 
-								<h3>Available Locations</h3>
-								<div id="standardCSALocations">
-								</div>
-								<div id="marketCSALocations">
-								</div>
-
-								<h3>Payment</h3>
-								<p id="date"><b>Date: </b></p>
-								<p id="plans"><b>Plan(s): </b></p>
-								<p id="pickup"><b>Pick-up Location: </b></p>
-								<p id="amountDue"><b>Total Amount Due: </b></p>
+								<h3>Payment Options</h3>
+								<p id="date"><strong>Date: </strong></p>
+								<p id="plans"><strong>Plan(s): </strong></p>
+								<p id="pickup"><strong>Pick-up Location: </strong></p>
+								<p id="amountDue"><strong>Total Amount Due: </strong></p>
 								<br />
 
 								<h4>Are you part of the OWF Workshare?</h4>
-								<p><input type="radio" name="workshare" value="yesWorkshare" /> Yes (Discounts will be given after approval from OWF.)</p>
-								<p><input type="radio" name="workshare" value="noWorkshare" /> No</p>
+								<div class="row">
+									<input type="radio" name="workshare" value="yesWorkshare" /> Yes (Discounts will be given after approval from OWF.) <br />
+									<input type="radio" name="workshare" value="noWorkshare" /> No
+								</div>
 
 								<h4>Select a payment method.</h4>
-								<p id="fullAmount"><input type="radio" name="check" value="totalCheck" />I will send a check for $.</p>
-								<p id="halfAmount"><input type="radio" name="check" value="halfCheck" />I will send a check for $ by April 30th.  The remaining $ will be sent by May 30th.</p>
-								<p id="paymentWarning"><b>A $100 minimum deposit is required to reserve a membership.</b> You must send a check by " " or your membership will be forfeited.  Send your check to: <br /><br />One Woman Farm<br />PO Box 17<br />Bradford Woods, PA 15015</p>
-								<p><input type="checkbox" name="acknowledge" value="acknowledge" required />By checking this box, I acknolwedge that I have read and understand the OWF CSA Membership Agreement.</p>
+								<div class="row" id="fullAmount"><input type="radio" name="check" value="totalCheck" /> I will send a check for $.</div>
+								<div class="row" id="halfAmount"><input type="radio" name="check" value="halfCheck" /> I will send a check for $ by April 30th.  The remaining $ will be sent by May 30th.</div>
+								<div class="row" id="paymentWarning"><strong>A $100 minimum deposit is required to reserve a membership.</strong> You must send a check within 14 days of registering or your membership will be forfeited. Send your check to: <br /><br />One Woman Farm<br />PO Box 17<br />Bradford Woods, PA 15015</p>
+								<div class="row"><input type="checkbox" name="acknowledge" value="acknowledge" required /> By checking this box, I acknolwedge that I have read and understand the OWF CSA Membership Agreement.</div>
 								<input type="submit" name="submit" value="Submit your CSA Registration" />
 							</form>
 						</div>
