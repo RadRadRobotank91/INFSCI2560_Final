@@ -47,6 +47,7 @@ $check = $_POST['check'];//balance (if marketshare)
 //Did not add acknowledge, as not sure if needed
 
 //Connect to the database
+$link = mysql_connect('Insert source', 'Insert database', 'Insert password');
 //If statement displays error if connection cannot be established
 if (!$link) { 
     die('Could not connect: ' . mysql_error()); 
@@ -57,9 +58,9 @@ mysql_select_db(owf);
 
 /*
  * Place customer information into Customer table
- * Format example: 'Harrison', 'Smith', '123 Main Street', 'Pittsburgh', 'PA', '90210', '867-5309', 'test@test.net', 'Kurt, Maggie', 3, 'Margaret'
+ * Format example: 'Harrison', 'Smith', '123 Main Street', 'Pittsburgh', 'PA', '90210', '867-5309', 'test@test.net', 'Kurt, Maggie', 3, 'Margaret', 0
  */
-mysql_query("INSERT INTO Customer (First_Name, Last_Name, Address, City, State, Zip, Phone, Email, Delegates, mid, midOther) VALUES ('" .$fName. "','" .$lName. "','" .$address. "','" .$city. "','" .$zip. "','" .$phone. "','" .$email. "','" .$otherMembers. "'," .$marketing. ",'" .$marketingOther. "')");
+mysql_query("INSERT INTO Customer (First_Name, Last_Name, Address, City, State, Zip, Phone, Email, Delegates, mid, midOther, workshare) VALUES ('" .$fName. "','" .$lName. "','" .$address. "','" .$city. "','" .$zip. "','" .$phone. "','" .$email. "','" .$otherMembers. "'," .$marketing. ",'" .$marketingOther. "'" .$workshare. ")");
 //Get the ID generated in last query, which is the customer ID
 $customerID = mysql_insert_id;
 
@@ -73,10 +74,11 @@ mysql_query("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES (" .$customerID. 
 * Determine if CSA is Market share
 * If so, add customerID and balance to Cust_has_Bal table
 */
-if($membership = 3 || $membership = 4) {
+if($membership == 3 || $membership == 4) {
 	//Get initial balance from CSAType table
 	$balance = mysql_query("SELECT price FROM CSAType WHERE csaid=" .$membership);
 	mysql_query("INSERT INTO Cust_has_Bal (cid, balance) VALUES (" .$customerID. "," .$balance. ")");
 }
-?>
 
+mysql_close($link);
+?>
