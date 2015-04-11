@@ -17,7 +17,7 @@ function membershipOptions() {
 		document.getElementById("plans").innerHTML = '<b>Plan(s): </b>' + membershipType;
 		document.getElementById("amountDue").innerHTML = '<b>Total Amount Due: </b>$' + membershipAmountDue;
 		//Place selection list on page
-		document.getElementById("standardCSALocations").innerHTML = '<select id="standardLocations><option value="eastLiberty">East Liberty Farmers Market - Monday Afternoon</option><option value="glenshaw">Glenshaw Presbyterian Church - Thursday Afternoon</option><option value="mountLebanon">Mount Lebanon Hillaire Drive - Monday Afternoon</option><option value="owf">One Woman Farm - Thursday Afternoon</option><option value="squirrelHill">Squirrel Hill Farmers Market = Sunday Mornings</option><option value="stPaul">St. Pauls United Methodist Church - Monday Afternoon</option></select>';	
+		document.getElementById("standardCSALocations").innerHTML = '<select id="standardLocations"><option value="eastLiberty">East Liberty Farmers Market - Monday Afternoon</option><option value="glenshaw">Glenshaw Presbyterian Church - Thursday Afternoon</option><option value="mountLebanon">Mount Lebanon Hillaire Drive - Monday Afternoon</option><option value="owf">One Woman Farm - Thursday Afternoon</option><option value="squirrelHill">Squirrel Hill Farmers Market = Sunday Mornings</option><option value="stPaul">St. Pauls United Methodist Church - Monday Afternoon</option></select>';	
 	} else if(selected == "biweeklyStandard") {
 		signDate();
 		amount = 325;
@@ -27,7 +27,7 @@ function membershipOptions() {
 		document.getElementById("plans").innerHTML = '<b>Plan(s): </b>' + membershipType;
 		document.getElementById("amountDue").innerHTML = '<b>Total Amount Due: </b>$' + membershipAmountDue;
 		//Place selection list on page
-		document.getElementById("standardCSALocations").innerHTML = '<select id="standardLocations><option value="eastLiberty">East Liberty Farmers Market - Monday Afternoon</option><option value="glenshaw">Glenshaw Presbyterian Church - Thursday Afternoon</option><option value="mountLebanon">Mount Lebanon Hillaire Drive - Monday Afternoon</option><option value="owf">One Woman Farm - Thursday Afternoon</option><option value="squirrelHill">Squirrel Hill Farmers Market = Sunday Mornings</option><option value="stPaul">St. Pauls United Methodist Church - Monday Afternoon</option></select>';
+		document.getElementById("standardCSALocations").innerHTML = '<select id="standardLocations"><option value="eastLiberty">East Liberty Farmers Market - Monday Afternoon</option><option value="glenshaw">Glenshaw Presbyterian Church - Thursday Afternoon</option><option value="mountLebanon">Mount Lebanon Hillaire Drive - Monday Afternoon</option><option value="owf">One Woman Farm - Thursday Afternoon</option><option value="squirrelHill">Squirrel Hill Farmers Market = Sunday Mornings</option><option value="stPaul">St. Pauls United Methodist Church - Monday Afternoon</option></select>';
 	} else if(selected == "largeMarket") {
 		signDate();
 		amount = 500;
@@ -37,7 +37,7 @@ function membershipOptions() {
 		document.getElementById("plans").innerHTML = '<b>Plan(s): </b>' + membershipType;
 		document.getElementById("amountDue").innerHTML = '<b>Total Amount Due: </b>$' + membershipAmountDue;
 		//Place selection list on page
-		document.getElementById("marketCSALocations").innerHTML = '<select id="marketLocations"><option value="eastLiberty>East Liberty Farmers Market - Monday Afternoon</option><option value="marketSquare">Market Square Farmers Market - Thursday Afternoon</option><option value="squirrelHill">Squirrel Hill Farmers Market</option></select>';
+		document.getElementById("marketCSALocations").innerHTML = '<select id="marketLocations"><option value="eastLiberty">East Liberty Farmers Market - Monday Afternoon</option><option value="marketSquare">Market Square Farmers Market - Thursday Afternoon</option><option value="squirrelHill">Squirrel Hill Farmers Market</option></select>';
 	} else if(selected == "smallMarket") {
 		signDate();
 		amount = 300;
@@ -47,7 +47,7 @@ function membershipOptions() {
 		document.getElementById("plans").innerHTML = '<b>Plan(s): </b>' + membershipType;
 		document.getElementById("amountDue").innerHTML = '<b>Total Amount Due: </b>$' + membershipAmountDue;
 		//Place selection list on page
-		document.getElementById("marketCSALocations").innerHTML = '<select id="marketLocations"><option value="eastLiberty>East Liberty Farmers Market - Monday Afternoon</option><option value="marketSquare">Market Square Farmers Market - Thursday Afternoon</option><option value="squirrelHill">Squirrel Hill Farmers Market</option></select>';
+		document.getElementById("marketCSALocations").innerHTML = '<select id="marketLocations"><option value="eastLiberty">East Liberty Farmers Market - Monday Afternoon</option><option value="marketSquare">Market Square Farmers Market - Thursday Afternoon</option><option value="squirrelHill">Squirrel Hill Farmers Market</option></select>';
 	} else if(selected == "coffee") {
 		coffeeOptions();
 	}
@@ -185,8 +185,8 @@ function coffeeOptions() {
 	var coffeeAmount = 0;
 	//If statement for adding coffee options
 	if(coffeeSelected != "none") {
-		document.getElementById("coffee").innerHTML='<p><input type="radio" name="beans value="ground" />Ground beans</p>' + 
-		'<p><input type="radio" name="beans value="whole" />Whole beans</p>';
+		document.getElementById("coffee").innerHTML='<p><input type="radio" name="beans" value="ground" />Ground beans</p>' + 
+		'<p><input type="radio" name="beans" value="whole" />Whole beans</p>';
 		//If-else statement to add coffeeType and coffeeAmount to total
 		if(coffeeSelected == "caff") {
 			coffeeType = " Bi-Weekly 1lb. Organic Coffee";
