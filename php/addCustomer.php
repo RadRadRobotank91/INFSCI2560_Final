@@ -60,7 +60,10 @@ mysql_select_db(owf);
  * Place customer information into Customer table
  * Format example: 'Harrison', 'Smith', '123 Main Street', 'Pittsburgh', 'PA', '90210', '867-5309', 'test@test.net', 'Kurt, Maggie', 3, 'Margaret', 0
  */
-mysql_query("INSERT INTO Customer (First_Name, Last_Name, Address, City, State, Zip, Phone, Email, Delegates, mid, midOther, workshare) VALUES ('" .$fName. "','" .$lName. "','" .$address. "','" .$city. "','" .$zip. "','" .$phone. "','" .$email. "','" .$otherMembers. "'," .$marketing. ",'" .$marketingOther. "'" .$workshare. ")");
+$query1 = mysql_query("INSERT INTO Customer (First_Name, Last_Name, Address, City, State, Zip, Phone, Email, Delegates, mid, midOther, workshare) VALUES ('" .$fName. "','" .$lName. "','" .$address. "','" .$city. "','" .$zip. "','" .$phone. "','" .$email. "','" .$otherMembers. "'," .$marketing. ",'" .$marketingOther. "'" .$workshare. ")");
+if(!$query1) {
+	die('Invalid query 1: ' . mysql_error());
+}
 //Get the ID generated in last query, which is the customer ID
 $customerID = mysql_insert_id;
 
@@ -68,8 +71,10 @@ $customerID = mysql_insert_id;
 * Place customerID, CSA type, and location into Cust_has_CSA table
 * Format example: 1, 3, 5
 */
-mysql_query("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES (" .$customerID. "," .$membership. "," .$standardLocations. ")");
-
+$query2 = mysql_query("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES (" .$customerID. "," .$membership. "," .$standardLocations. ")");
+if(!$query2) {
+	die('Invalid query 2: ' . mysql_error());
+}
 /*
 * Determine if CSA is Market share
 * If so, add customerID and balance to Cust_has_Bal table
@@ -77,7 +82,10 @@ mysql_query("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES (" .$customerID. 
 if($membership == 3 || $membership == 4) {
 	//Get initial balance from CSAType table
 	$balance = mysql_query("SELECT price FROM CSAType WHERE csaid=" .$membership);
-	mysql_query("INSERT INTO Cust_has_Bal (cid, balance) VALUES (" .$customerID. "," .$balance. ")");
+	$query3 = mysql_query("INSERT INTO Cust_has_Bal (cid, balance) VALUES (" .$customerID. "," .$balance. ")");
+	if(!$query3) {
+	die('Invalid query 3: ' . mysql_error());
+}
 }
 
 mysql_close($link);
