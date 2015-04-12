@@ -22,7 +22,7 @@
 		<link  rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.custom.min.css" media="screen, projection" />
 		<script src="js/jquery/jquery.js" type="text/javascript"></script>
 		<script src="js/superfish.js" type="text/javascript"></script>
-		<!--<script src="js/form.js" type="text/javascript"></script> -->
+		<script src="js/form.js" type="text/javascript"></script>
 		<link href="css/content.css" rel="stylesheet" type="text/css" media="screen,tv,projection" />
 		<script type="text/javascript"> 
 		$(document).ready(function(){ 
@@ -256,7 +256,7 @@ div.tooltip p {
 
 	var url="dd.php";
   var cat=document.getElementById('ddl1').value;
-  var cat2=document.getElementById('ddl3').value;
+  var cat2=document.getElementById('ddl2').value;
   if (!cat) {
     cat=0;
   }
@@ -393,7 +393,7 @@ div.tooltip p {
       require "php/config.php";// connection to database 
 
       echo "<select name='cat' id='ddl1' onchange=AjaxFunction();> 
-      <option value=''>Select One</option>"; 
+      <option value='0'>Select One</option>"; 
 
       $sql="select * from CSAType WHERE csaid < '5'"; // Query to collect data from table 
 
@@ -413,7 +413,7 @@ div.tooltip p {
       require "php/config.php";// connection to database 
 
       echo "<select name='cat2' id='ddl2' onchange=AjaxFunction();> 
-      <option value=''>Select One</option>"; 
+      <option value='0'>Select One</option>"; 
 
       $sql="select * from CSAType WHERE csaid > '4' AND csaid < '99'"; // Query to collect data from table 
 
@@ -449,14 +449,21 @@ div.tooltip p {
 								<div class="row"><label class="form-label">E-mail&nbsp;&nbsp;</label><input type="email" name="email" id="email" placeholder="jsmith@example.com" maxlength="255" value="" required /></div>
 								<div class="row"><label class="form-label">Verify E-mail&nbsp;&nbsp;</label><input type="email" name="email2" id="email2" placeholder="jsmith@example.com" maxlength="255" value="" required /></div>
 								<div class="row"><br /><label>How did you hear about One Woman Farm?</label><br />
-									<select id="marketing">
-										<option value="" selected>Select</option>
-										<option value="1">Marketing1</option>
-										<option value="2">Marketing2</option>
-										<option value="3">Marketing3</option>
-										<option value="4">Marketing4</option>
-										<option value="5">Other</option>
-									</select><br />
+									<!-- Add second list box -->
+    <?php
+      require "php/config.php";// connection to database 
+
+      echo "<select name='marketing' id='ddl4'> 
+      <option value='0'>Select One</option>"; 
+
+      $sql="select * from Marketing"; // Query to collect data from table 
+
+      foreach ($dbo->query($sql) as $row) {
+        echo "<option value=$row[mid]>$row[channel]</option>";
+      }
+    ?>
+    </select>
+    <br />
 									<input type="text" name="marketingOther" placeholder="Referral Name or Other" maxlength="255"  value="" required /></div>
 								
 
