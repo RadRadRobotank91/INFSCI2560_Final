@@ -1,6 +1,7 @@
-var membershipAmountDue = 0;
-var membershipType = ""
+var membershipAmountDue = 50;
+var membershipType = "Aloe"
 
+<<<<<<< Updated upstream
 //Used to populate the form based on selected membership
 function membershipOptions() {
 	var e = document.getElementById("membership");//Get selection element
@@ -54,129 +55,63 @@ function membershipOptions() {
 	//Place amount due on page
 	document.getElementById("fullAmount").innerHTML = '<input type="radio" name="check" value="totalCheck" />I will send a check for $' + membershipAmountDue + '.';
 	document.getElementById("halfAmount").innerHTML = '<input type="radio" name="check" value="halfCheck" />I will send a check for $' + (membershipAmountDue / 2) + ' by April 30th.  The remaining $' + (membershipAmountDue / 2) + ' will be sent by May 30th.';
+=======
+//Add 14 days to the current date.
+function setDueDate (nDate) {
+	var newdate = new Date(nDate);
+	newdate.setDate(newdate.getDate() + 14);
+
+	var dd = newdate.getDate();
+	var mm = newdate.getMonth() + 1;
+	var yyyy = newdate.getFullYear();
+
+	mm = numToMonth(mm);
+
+	return mm + " " + dd + ", " + yyyy;
+
 }
 
-//Used to get the current date
-function signDate() {
+//Convert Month Number Format to String
+function numToMonth (nNum) {
+	allMonths = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+	return allMonths[nNum];
+>>>>>>> Stashed changes
+}
+
+$(document).ready(function() {
+	//Used to set the Current Date and the Payment Due Date
 	var d = new Date();
 	var date = d.getDate();//Get current date
 	var year = d.getFullYear();//Get current year
 	var month = d.getMonth();//Get current month
 	var dayString = "";
+	var allMonths = "";
 	var monthString = "";
 	var dateString = "";
 	var dueDate = 0;
 	var dueDateString = "";
-	//If-else statement gives correct month
-	if(month == 0) {
-		monthString = "January";
-	} else if(month == 1) {
-		monthString = "February";
-	} else if(month == 2) {
-		monthString = "March";
-	} else if(month == 3) {
-		monthString = "April";
-	} else if(month == 4) {
-		monthString = "May";
-	} else if(month == 5) {
-		monthString = "June";
-	} else if(month == 6) {
-		monthString = "July";
-	} else if(month == 7) {
-		monthString = "August";
-	} else if(month == 8) {
-		monthString = "September";
-	} else if(month == 9) {
-		monthString = "October";
-	} else if(month == 10) {
-		monthString = "November";
-	} else if(month == 11) {
-		monthString = "December";
-	}
-	dateString = monthString + " " + date + ", " + year;
-	document.getElementById("date").innerHTML = '<b>Date: </b>' + dateString;
-	//If-else statement to calculate due date
-	if(month == 0) {
-		dueDate = date + 14;
-		if(dueDate > 31) {
-			monthString = "February";
-			dueDate = dueDate - 31;
-		}
-	} else if(month == 1) {
-		dueDate = date + 14;
-		//Does not check for leap year
-		if(dueDate > 28) {
-			monthString = "March";
-			dueDate = dueDate - 28;
-		}
-	} else if(month == 2) {
-		dueDate = date + 14;
-		if(dueDate > 31) {
-			monthString = "April";
-			dueDate = dueDate - 31;
-		}
-	} else if(month == 3) {
-		dueDate = date + 14;
-		if(dueDate > 30) {
-			monthString = "May";
-			dueDate = dueDate - 30;
-		}		
-	} else if(month == 4) {
-		dueDate = date + 14;
-		if(dueDate > 31) {
-			monthString = "June";
-			dueDate = dueDate - 31;
-		}		
-	} else if(month == 5) {
-		dueDate = date + 14;
-		if(dueDate > 30) {
-			monthString = "July";
-			dueDate = dueDate - 30;
-		}		
-	} else if(month == 6) {
-		dueDate = date + 14;
-		if(dueDate > 31) {
-			monthString = "August";
-			dueDate = dueDate - 31;
-		}		
-	} else if(month == 7) {
-		dueDate = date + 14;
-		if(dueDate > 31) {
-			monthString = "September";
-			dueDate = dueDate - 31;
-		}		
-	} else if(month == 8) {
-		dueDate = date + 14;
-		if(dueDate > 30) {
-			monthString = "October";
-			dueDate = dueDate - 30;
-		}		
-	} else if(month == 9) {
-		dueDate = date + 14;
-		if(dueDate > 31) {
-			monthString = "November";
-			dueDate = dueDate - 31;
-		}		
-	} else if(month == 10) {
-		dueDate = date + 14;
-		if(dueDate > 30) {
-			monthString = "December";
-			dueDate = dueDate - 30;
-		}		
-	} else if(month == 11) {
-		dueDate = date + 14;
-		//Does not change year
-		if(dueDate > 31) {
-			monthString = "January";
-			dueDate = dueDate - 31;
-		}	
-	}
-	//Currently does not check for May 30th final due date
-	dueDateString = monthString + " " + dueDate + ", " + year;
-	document.getElementById("paymentWarning").innerHTML = '<b>A $100 minimum deposit is required to reserve a membership.</b> You must send a check by ' +
-	dueDateString + ' or your membership will be forfeited.  Send your check to: <br /><br />One Woman Farm<br />PO Box 17<br />Bradford Woods, PA 15015';
-}
 
+	//Convert Month Number to Month String
+	monthString = numToMonth(month);
+
+	dateString = monthString + " " + date + ", " + year;
+	document.getElementById("date").innerHTML = '<strong>Current Date: </strong>' + dateString;
+
+	//Calculate due date
+	dueDateString = setDueDate(d);
+
+	//Check if 14 days is less than the cut off date of May 30
+	var cutOffDate = new Date();
+	cutOffDate = cutOffDate.setMonth(4, 30);
+	if (dueDateString > cutOffDate) {
+		dueDateString = CutOffDate;
+	}
+
+	document.getElementById("paymentWarning").innerHTML = '<strong>A $100 minimum deposit is required to reserve a membership.</strong> You must send a check by ' +
+	dueDateString + ' or your membership will be forfeited.  Send your check to: <br /><br />One Woman Farm<br />PO Box 17<br />Bradford Woods, PA 15015';
+});
+
+<<<<<<< Updated upstream
 //Used to populate the form based on coffee selections
 function coffeeOptions() {
 	var j = document.getElementById("coffeeSelection");//Get coffee selection
@@ -215,3 +150,70 @@ function coffeeOptions() {
 		}
 	}
 }
+=======
+function AjaxFunction() {
+	/* This function is an adaptation from a tutorial on plus2net *
+	 * http://www.plus2net.com/php_tutorial/ajax_drop_down_list.php */
+	 
+  var httpxml;
+  try
+  {
+  // Firefox, Opera 8.0+, Safari
+  httpxml=new XMLHttpRequest();
+  }
+  catch (e)
+  {
+  // Internet Explorer
+    try
+  		{
+  				 httpxml=new ActiveXObject("Msxml2.XMLHTTP");
+  		}
+  	catch (e)
+  		{
+  		 try
+  		  {
+  		    httpxml=new ActiveXObject("Microsoft.XMLHTTP");
+  		  }
+  		 catch (e)
+  		  {
+  		    alert("Your browser does not support AJAX!");
+  		    return false;
+  		  }
+  	  }
+  }
+  function stateck() {
+    if(httpxml.readyState==4)
+    {
+      //alert(httpxml.responseText);
+      var myarray = JSON.parse(httpxml.responseText);
+      // Remove the options from 2nd dropdown list 
+      for(j=document.registration.subcat.options.length-1;j>=0;j--)
+      {
+        document.registration.subcat.remove(j);
+      }
+      for (i=0;i<myarray.data.length;i++)
+      {
+        var optn = document.createElement("OPTION");
+        optn.text = myarray.data[i].name;
+        optn.value = myarray.data[i].lid;  // You can change this to subcategory 
+        document.registration.subcat.options.add(optn);
+      } 
+    }
+  } // end of function stateck
+
+	var url="../php/dd.php";
+  var cat=document.getElementById('ddl1').value;
+  var cat2=document.getElementById('ddl2').value;
+  if (!cat) {
+    cat=0;
+  }
+  if (!cat2) {
+    cat2=0;
+  }
+  url=url+"?cat="+cat+"&cat2="+cat2;
+  httpxml.onreadystatechange=stateck;
+  //alert(url);
+  httpxml.open("GET",url,true);
+  httpxml.send(null);
+} // end of function AjaxFunction
+>>>>>>> Stashed changes
