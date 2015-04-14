@@ -1,5 +1,4 @@
  <?php
- echo($_POST);
 //Get values from POST
 $membership = $_POST['cat'];//csaid (1-4)
 $coffeeSelection = $_POST['cat2'];//csaid (5-8)
@@ -20,48 +19,48 @@ $marketingOther = $_POST['marketingOther'];//midOther
 $workshare = $_POST['workshare'];//workshare
 $check = $_POST['check'];//Not present in database
 
-echo ($membership);
-echo ($coffeeSelection);
-echo ($locations);
-echo ($otherMembers);
-echo ($fName);
-echo ($lName);
-echo ($address);
-echo ($city);
-echo ($state);
-echo ($zip);
-echo ($phone);
-echo ($email);
-echo ($marketing);
-echo ($marketingOther);
-echo ($workshare);
-echo ($check);
+echo ($membership.'<br />');
+echo ($coffeeSelection.'<br />');
+echo ($locations.'<br />');
+echo ($otherMembers.'<br />');
+echo ($fName.'<br />');
+echo ($lName.'<br />');
+echo ($address.'<br />');
+echo ($city.'<br />');
+echo ($state.'<br />');
+echo ($zip.'<br />');
+echo ($phone.'<br />');
+echo ($email.'<br />');
+echo ($marketing.'<br />');
+echo ($marketingOther.'<br />');
+echo ($workshare.'<br />');
+echo ($check.'<br />');
 
 //Connect to the database
-require "config.php";
-mysql_select_db(owf);
+require 'config.php';
 
 /*
  * Place customer information into Customer table
  * Format example: 'Harrison', 'Smith', '123 Main Street', 'Pittsburgh', 'PA', '90210', '867-5309', 'test@test.net', 'Kurt, Maggie', 3, 'Margaret', 0
  */
-$query = "insert into Customer ".
-"(First_Name, Last_Name, Address, City, State, Zip, Phone, Email, Delegates, mid, midOther, workshare)".
-"values ('$fName','$lName','$address','$city','$zip','$phone','$email','$otherMembers','$marketing','$marketingOther','$workshare')";
-
-$result = mysql_query($query);
-if (!$result) {
-    echo ("Insert into Customer was not successful.");
+$query = $dbo->prepare("INSERT INTO Customer(First_Name, Last_Name, Address, City, State, Zip, Phone, Email, Delegates, mid, midOther, Workshare) VALUES(:First_Name, :Last_Name, :Address, :City, :State, :Zip, :Phone, :Email, :Delegates, :mid, :midOther, :Workshare)");
+$query->execute(array('First_Name'=>$fName, 'Last_Name'=>$lName, 'Address'=>$address, 'City'=>$city, 'State'=>$state, 'Zip'=>$zip, 'Phone'=>$phone, 'Email'=>$email, 'Delegates'=>$otherMembers, 'mid'=>$marketing, 'midOther'=>$marketingOther, 'Workshare'=>$workshare));
+$result = $dbo->prepare("SELECT * FROM Customer");
+$result->execute();
+echo "<table>";
+while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+	echo "<tr>";
+	foreach($row as $value) {
+		echo "<td>{$value}</td>";
+	}
+	echo "</tr>";
 }
-//Get the ID generated in last query, which is the customer ID
-$customerID = mysql_insert_id;
-echo ($customerID);
+echo "</table>";
 /*
 * Place customerID, CSA type, and location into Cust_has_CSA table
 * Multiple entries needed if Customer has more than one CSA
 * Format example: 1, 3, 5
-*/
-
+*
 if($membership == 99) {
 	//No CSA present, coffee only
 	//Insert coffeeSelection into table
@@ -94,7 +93,7 @@ if($membership == 99) {
 /*
 * Determine if CSA is Market share
 * If so, add customerID and balance to Cust_has_Bal table
-*/
+*
 if($membership == 3 || $membership == 4) {
 	//Get initial balance from CSAType table
 	$balance = mysql_query("select price from CSAType where csaid='$membership'");
@@ -103,4 +102,5 @@ if($membership == 3 || $membership == 4) {
     	echo ("Insert into Cust_has_Bal was not successful.");
 	}
 }
+*/
 ?>
