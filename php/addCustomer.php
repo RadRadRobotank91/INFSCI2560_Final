@@ -45,6 +45,8 @@ require 'config.php';
  */
 $query = $dbo->prepare("INSERT INTO Customer(First_Name, Last_Name, Address, City, State, Zip, Phone, Email, Delegates, mid, midOther, Workshare) VALUES(:First_Name, :Last_Name, :Address, :City, :State, :Zip, :Phone, :Email, :Delegates, :mid, :midOther, :Workshare)");
 $query->execute(array('First_Name'=>$fName, 'Last_Name'=>$lName, 'Address'=>$address, 'City'=>$city, 'State'=>$state, 'Zip'=>$zip, 'Phone'=>$phone, 'Email'=>$email, 'Delegates'=>$otherMembers, 'mid'=>$marketing, 'midOther'=>$marketingOther, 'Workshare'=>$workshare));
+$customerID = $dbo->lastInsertId();
+echo ($customerID.'<br />');
 $result = $dbo->prepare("SELECT * FROM Customer");
 $result->execute();
 echo "<table>";
@@ -60,47 +62,83 @@ echo "</table>";
 * Place customerID, CSA type, and location into Cust_has_CSA table
 * Multiple entries needed if Customer has more than one CSA
 * Format example: 1, 3, 5
-*
-if($membership == 99) {
+*/
+if($membership == 0) {
 	//No CSA present, coffee only
 	//Insert coffeeSelection into table
-	$result = mysql_query("insert into Cust_has_CSA (cid, csaid, lid) values ('$customerID','$coffeeSelection','$locations')");
-	if (!$result) {
-    	echo ("Insert into Cust_has_CSA was not successful.");
+	$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$coffeeSelection','$locations')");
+	$query->execute(array('cid'=>$customerID, 'csaid'=>$coffeeSelection, 'lid'=>$locations));
+	$result = $dbo->prepare("SELECT * FROM Cust_has_CSA");
+	$result->execute();
+	echo "<table>";
+	while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+		echo "<tr>";
+		foreach($row as $value) {
+			echo "<td>{$value}</td>";
+		}
+		echo "</tr>";
 	}
-} else if($membership != 99) {
+	echo "</table>";
+} else if($membership != 0) {
 	//CSA is present, check for coffee
-	if($coffeeSelection == 99) {
+	if($coffeeSelection == 0) {
 		//No coffee
 		//Insert membership into table
-		$result = mysql_query("insert into Cust_has_CSA (cid, csaid, lid) values ('$customerID','$membership','$locations')");
-		if (!$result) {
-    		echo ("Insert into Cust_has_CSA was not successful.");
+		$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$membership','$locations')");
+		$query->execute(array('cid'=>$customerID, 'csaid'=>$membership, 'lid'=>$locations));
+	$result = $dbo->prepare("SELECT * FROM Cust_has_CSA");
+	$result->execute();
+	echo "<table>";
+	while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+		echo "<tr>";
+		foreach($row as $value) {
+			echo "<td>{$value}</td>";
 		}
-	} else if($coffeeSelection != 99) {
+		echo "</tr>";
+	}
+	echo "</table>";
+	} else if($coffeeSelection != 0) {
 		//Coffee
 		//Insert both membership and coffeeSelection into table
-		$result = mysql_query("insert into Cust_has_CSA (cid, csaid, lid) values ('$customerID','$membership','$locations')");
-		if (!$result) {
-    		echo ("Insert into Cust_has_CSA was not successful.");
+		$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$membership','$locations')");
+		$query->execute(array('cid'=>$customerID, 'csaid'=>$membership, 'lid'=>$locations));
+		$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$coffeeSelection','$locations')");
+		$query->execute(array('cid'=>$customerID, 'csaid'=>$coffeeSelection, 'lid'=>$locations));
+		$result = $dbo->prepare("SELECT * FROM Cust_has_CSA");
+		$result->execute();
+		echo "<table>";
+		while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+			echo "<tr>";
+			foreach($row as $value) {
+				echo "<td>{$value}</td>";
+			}
+			echo "</tr>";
 		}
-		$result = mysql_query("insert into Cust_has_CSA (cid, csaid, lid) values ('$customerID','$coffeeSelection','$locations')");
-		if (!$result) {
-    		echo ("Insert into Cust_has_CSA was not successful.");
-		}
+		echo "</table>";
 	}
 }
 /*
 * Determine if CSA is Market share
 * If so, add customerID and balance to Cust_has_Bal table
-*
+*/
 if($membership == 3 || $membership == 4) {
 	//Get initial balance from CSAType table
-	$balance = mysql_query("select price from CSAType where csaid='$membership'");
-	$result = mysql_query("insert into Cust_has_Bal (cid, balance) values ('customerID','$balance')");
-	if (!$result) {
-    	echo ("Insert into Cust_has_Bal was not successful.");
+	$query = $dbo->query("SELECT price FROM CSAType WHERE csaid='$membership'");
+	$array = $query->fetch();
+	$balance = $array[0];
+	echo ($balance.'<br />');
+	$query = $dbo->prepare("INSERT INTO Cust_has_Bal (cid, balance) values ('$customerID','$balance')");
+	$query->execute(array('cid'=>$customerID, 'balance'=>$balance));
+	$result = $dbo->prepare("SELECT * FROM Cust_has_Bal");
+	$result->execute();
+	echo "<table>";
+	while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+		echo "<tr>";
+		foreach($row as $value) {
+			echo "<td>{$value}</td>";
+		}
+		echo "</tr>";
 	}
+	echo "</table>";
 }
-*/
 ?>
