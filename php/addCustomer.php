@@ -39,19 +39,23 @@ echo ($check);
 
 //Connect to the database
 require "config.php";
-mysql_connect(owf);
+mysql_select_db(owf);
 
 /*
  * Place customer information into Customer table
  * Format example: 'Harrison', 'Smith', '123 Main Street', 'Pittsburgh', 'PA', '90210', '867-5309', 'test@test.net', 'Kurt, Maggie', 3, 'Margaret', 0
  */
-$result = mysql_query("INSERT INTO Customer (First_Name, Last_Name, Address, City, State, Zip, Phone, Email, Delegates, mid, midOther, workshare) VALUES ('$fName','$lName','$address','$city','$zip','$phone','$email','$otherMembers','$marketing','$marketingOther','$workshare')");
+$query = "insert into Customer ".
+"(First_Name, Last_Name, Address, City, State, Zip, Phone, Email, Delegates, mid, midOther, workshare)".
+"values ('$fName','$lName','$address','$city','$zip','$phone','$email','$otherMembers','$marketing','$marketingOther','$workshare')";
+
+$result = mysql_query($query);
 if (!$result) {
     echo ("Insert into Customer was not successful.");
 }
 //Get the ID generated in last query, which is the customer ID
 $customerID = mysql_insert_id;
-
+echo ($customerID);
 /*
 * Place customerID, CSA type, and location into Cust_has_CSA table
 * Multiple entries needed if Customer has more than one CSA
@@ -61,7 +65,7 @@ $customerID = mysql_insert_id;
 if($membership == 99) {
 	//No CSA present, coffee only
 	//Insert coffeeSelection into table
-	$result = mysql_query("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES ('$customerID','$coffeeSelection','$locations')");
+	$result = mysql_query("insert into Cust_has_CSA (cid, csaid, lid) values ('$customerID','$coffeeSelection','$locations')");
 	if (!$result) {
     	echo ("Insert into Cust_has_CSA was not successful.");
 	}
@@ -70,18 +74,18 @@ if($membership == 99) {
 	if($coffeeSelection == 99) {
 		//No coffee
 		//Insert membership into table
-		$result = mysql_query("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES ('$customerID','$membership','$locations')");
+		$result = mysql_query("insert into Cust_has_CSA (cid, csaid, lid) values ('$customerID','$membership','$locations')");
 		if (!$result) {
     		echo ("Insert into Cust_has_CSA was not successful.");
 		}
 	} else if($coffeeSelection != 99) {
 		//Coffee
 		//Insert both membership and coffeeSelection into table
-		$result = mysql_query("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES ('$customerID','$membership','$locations')");
+		$result = mysql_query("insert into Cust_has_CSA (cid, csaid, lid) values ('$customerID','$membership','$locations')");
 		if (!$result) {
     		echo ("Insert into Cust_has_CSA was not successful.");
 		}
-		$result = mysql_query("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES ('$customerID','$coffeeSelection','$locations')");
+		$result = mysql_query("insert into Cust_has_CSA (cid, csaid, lid) values ('$customerID','$coffeeSelection','$locations')");
 		if (!$result) {
     		echo ("Insert into Cust_has_CSA was not successful.");
 		}
@@ -93,8 +97,8 @@ if($membership == 99) {
 */
 if($membership == 3 || $membership == 4) {
 	//Get initial balance from CSAType table
-	$balance = mysql_query("SELECT price FROM CSAType WHERE csaid='$membership'");
-	$result = mysql_query("INSERT INTO Cust_has_Bal (cid, balance) VALUES ('customerID','$balance')");
+	$balance = mysql_query("select price from CSAType where csaid='$membership'");
+	$result = mysql_query("insert into Cust_has_Bal (cid, balance) values ('customerID','$balance')");
 	if (!$result) {
     	echo ("Insert into Cust_has_Bal was not successful.");
 	}
