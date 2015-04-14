@@ -1,4 +1,5 @@
  <?php
+ echo($_POST);
 //Get values from POST
 $membership = $_POST['cat'];//csaid (1-4)
 $coffeeSelection = $_POST['cat2'];//csaid (5-8)
@@ -19,27 +20,34 @@ $marketingOther = $_POST['marketingOther'];//midOther
 $workshare = $_POST['workshare'];//workshare
 $check = $_POST['check'];//Not present in database
 
-/*
-//Connect to the database
-$link = mysql_connect('holliday.startlogicmysql.com', 'db2560', 'OWF3r$$'); 
-if (!$link) { 
-    die('Could not connect: ' . mysql_error()); 
-} 
-echo 'Connected successfully'; 
+echo ($membership);
+echo ($coffeeSelection);
+echo ($locations);
+echo ($otherMembers);
+echo ($fName);
+echo ($lName);
+echo ($address);
+echo ($city);
+echo ($state);
+echo ($zip);
+echo ($phone);
+echo ($email);
+echo ($marketing);
+echo ($marketingOther);
+echo ($workshare);
+echo ($check);
 
-//Set active database
-mysql_select_db(owf);
-*/
 //Connect to the database
 require "config.php";
-mysql_select_db(owf);
 
 /*
  * Place customer information into Customer table
  * Format example: 'Harrison', 'Smith', '123 Main Street', 'Pittsburgh', 'PA', '90210', '867-5309', 'test@test.net', 'Kurt, Maggie', 3, 'Margaret', 0
  */
-mysql_query("INSERT INTO Customer (First_Name, Last_Name, Address, City, State, Zip, Phone, Email, Delegates, mid, midOther, workshare) VALUES ('" .$fName. "','" .$lName. "','" .$address. "','" .$city. "','" .$zip. "','" .$phone. "','" .$email. "','" .$otherMembers. "'," .$marketing. ",'" .$marketingOther. "'" .$workshare. ")");
-
+$result = mysql_query("INSERT INTO Customer (First_Name, Last_Name, Address, City, State, Zip, Phone, Email, Delegates, mid, midOther, workshare) VALUES ('$fName','$lName','$address','$city','$zip','$phone','$email','$otherMembers','$marketing','$marketingOther','$workshare')");
+if (!$result) {
+    echo ("Insert into Customer was not successful.");
+}
 //Get the ID generated in last query, which is the customer ID
 $customerID = mysql_insert_id;
 
@@ -52,18 +60,30 @@ $customerID = mysql_insert_id;
 if($membership == 99) {
 	//No CSA present, coffee only
 	//Insert coffeeSelection into table
-	mysql_query("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES (" .$customerID. "," .$coffeeSelection. "," .$locations. ")");
+	$result = mysql_query("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES ('$customerID','$coffeeSelection','$locations')");
+	if (!$result) {
+    	echo ("Insert into Cust_has_CSA was not successful.");
+	}
 } else if($membership != 99) {
 	//CSA is present, check for coffee
 	if($coffeeSelection == 99) {
 		//No coffee
 		//Insert membership into table
-		mysql_query("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES (" .$customerID. "," .$membership. "," .$locations. ")");
+		$result = mysql_query("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES ('$customerID','$membership','$locations')");
+		if (!$result) {
+    		echo ("Insert into Cust_has_CSA was not successful.");
+		}
 	} else if($coffeeSelection != 99) {
 		//Coffee
 		//Insert both membership and coffeeSelection into table
-		mysql_query("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES (" .$customerID. "," .$membership. "," .$locations. ")");
-		mysql_query("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES (" .$customerID. "," .$coffeeSelection. "," .$locations. ")");
+		$result = mysql_query("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES ('$customerID','$membership','$locations')");
+		if (!$result) {
+    		echo ("Insert into Cust_has_CSA was not successful.");
+		}
+		$result = mysql_query("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES ('$customerID','$coffeeSelection','$locations')");
+		if (!$result) {
+    		echo ("Insert into Cust_has_CSA was not successful.");
+		}
 	}
 }
 /*
@@ -72,7 +92,10 @@ if($membership == 99) {
 */
 if($membership == 3 || $membership == 4) {
 	//Get initial balance from CSAType table
-	$balance = mysql_query("SELECT price FROM CSAType WHERE csaid=" .$membership);
-	mysql_query("INSERT INTO Cust_has_Bal (cid, balance) VALUES (" .$customerID. "," .$balance. ")");
+	$balance = mysql_query("SELECT price FROM CSAType WHERE csaid='$membership'");
+	$result = mysql_query("INSERT INTO Cust_has_Bal (cid, balance) VALUES ('customerID','$balance')");
+	if (!$result) {
+    	echo ("Insert into Cust_has_Bal was not successful.");
+	}
 }
 ?>
