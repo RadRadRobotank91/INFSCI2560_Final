@@ -39,6 +39,7 @@ echo ($check);
 
 //Connect to the database
 require "config.php";
+mysql_connect(owf);
 
 /*
  * Place customer information into Customer table
