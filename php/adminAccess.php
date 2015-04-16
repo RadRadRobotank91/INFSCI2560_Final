@@ -1,37 +1,57 @@
 <?php 
-//Connect to DB:
-$link = mysql_connect('Source', 'Login', 'Password'); 
-if (!$link) { 
-    die('Could not connect: ' . mysql_error()); 
-} 
-echo 'Connected successfully'; 
-mysql_select_db(owf); 
-
 //Retrieve customer names from admin form:
-$cid = $_POST['cid'];
-$fname = $_POST['fname'];
-$lname = $_POST['lname'];
-//$balance = $_POST['balance'];
-$pDate = //today's date and time
+$fname = $_POST['firstName'];
+$lname = $_POST['lastName'];
+$address = $_POST['address'];
+$amount = $_POST['amount'];
+$pickup = $_POST['pickup'];
 
-echo $cid, $fname, $lname, $balance, $pDate
+echo ($fname.'<br />');
+echo ($lname.'<br />');
+echo ($address.'<br />');
+echo ($pickup.'<br />');
+echo ($amount.'<br />');
+//Connect to Database
+//require 'config.php';
 
-//Get current balance: is this accurate way of UPDATING and not adding new?
-
-function editUser($fname, $lname, $balance){
-
-$old_bal = mysql_query("SELECT price FROM CSAType WHERE csaid=" .$membership);
-	if(!$old_bal){
-		die('Old balance query invalid: ' . mysql_error());
+//$query = $dbo->query("SELECT cid, lid FROM Customer WHERE First_Name='$fname' AND Last_Name='$lname' AND Address='$address'");
+//$array = $query->fetch();
+//$customerID = $array[0];
+//$locationID = $array[1];
+//echo($customerID.'<br />');
+//echo($locationID.'<br />');
+/*
+if ($pickup == "Yes") {
+	$query = $dbo->prepare("INSERT INTO Cust_makes_Pickup (cid, pDate, lid) values ('$customerID', NOW(), '$locationID')");
+	$query->bind_param($customerID, $pDate, $locationID);
+	$query->execute();
+	$result = $dbo->prepare("SELECT * FROM Cust_makes_Pickup");
+	$result->execute();
+	echo "<table>";
+	while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+		echo "<tr>";
+		foreach($row as $value) {
+			echo "<td>{$value}</td>";
+		}
+		echo "</tr>";
 	}
-$new_bal = $_POST['balance'];
-$balance_query = mysql_query("INSERT INTO Cust_has_Bal (cid, balance) VALUES (" .$customerID. "," .$balance. ");
-	if(!$balance_query){
-		die('Balance query invalid: ' . mysql_error());
-	}
+	echo "</table>";*/
 }
-
-//add update for 'order picked up today'
-
-mysql_close($link);
+*/
+if ($amount != 0) {
+	//Update balance
+}
+/*$query = $dbo->prepare("INSERT INTO Cust_has_Bal (cid, balance) values ('$customerID','$balance')");
+$query->execute(array('cid'=>$customerID, 'balance'=>$balance));
+$result = $dbo->prepare("SELECT * FROM Cust_has_Bal");
+$result->execute();
+echo "<table>";
+while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+	echo "<tr>";
+	foreach($row as $value) {
+		echo "<td>{$value}</td>";
+	}
+	echo "</tr>";
+}
+echo "</table>";*/
 ?> 
