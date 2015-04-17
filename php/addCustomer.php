@@ -1,3 +1,14 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="refresh" content="5; url=../main.php" />
+	
+	<title>Customer Success</title>
+	
+</head>
+<body>
  <?php
 //Get values from POST
 $membership = $_POST['cat'];//csaid (1-4)
@@ -19,22 +30,8 @@ $marketingOther = $_POST['marketingOther'];//midOther
 $workshare = $_POST['workshare'];//workshare
 $check = $_POST['check'];//Not present in database
 
-echo ($membership.'<br />');
-echo ($coffeeSelection.'<br />');
-echo ($locations.'<br />');
-echo ($otherMembers.'<br />');
-echo ($fName.'<br />');
-echo ($lName.'<br />');
-echo ($address.'<br />');
-echo ($city.'<br />');
-echo ($state.'<br />');
-echo ($zip.'<br />');
-echo ($phone.'<br />');
-echo ($email.'<br />');
-echo ($marketing.'<br />');
-echo ($marketingOther.'<br />');
-echo ($workshare.'<br />');
-echo ($check.'<br />');
+//Variables store if query was successful.
+$querySuccess;
 
 //Connect to the database
 require 'config.php';
@@ -44,20 +41,14 @@ require 'config.php';
  * Format example: 'Harrison', 'Smith', '123 Main Street', 'Pittsburgh', 'PA', '90210', '867-5309', 'test@test.net', 'Kurt, Maggie', 3, 'Margaret', 0
  */
 $query = $dbo->prepare("INSERT INTO Customer(First_Name, Last_Name, Address, City, State, Zip, Phone, Email, Delegates, mid, midOther, Workshare) VALUES(:First_Name, :Last_Name, :Address, :City, :State, :Zip, :Phone, :Email, :Delegates, :mid, :midOther, :Workshare)");
-$query->execute(array('First_Name'=>$fName, 'Last_Name'=>$lName, 'Address'=>$address, 'City'=>$city, 'State'=>$state, 'Zip'=>$zip, 'Phone'=>$phone, 'Email'=>$email, 'Delegates'=>$otherMembers, 'mid'=>$marketing, 'midOther'=>$marketingOther, 'Workshare'=>$workshare));
-$customerID = $dbo->lastInsertId();
-echo ($customerID.'<br />');
-$result = $dbo->prepare("SELECT * FROM Customer");
-$result->execute();
-echo "<table>";
-while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-	echo "<tr>";
-	foreach($row as $value) {
-		echo "<td>{$value}</td>";
-	}
-	echo "</tr>";
+if($query->execute(array('First_Name'=>$fName, 'Last_Name'=>$lName, 'Address'=>$address, 'City'=>$city, 'State'=>$state, 'Zip'=>$zip, 'Phone'=>$phone, 'Email'=>$email, 'Delegates'=>$otherMembers, 'mid'=>$marketing, 'midOther'=>$marketingOther, 'Workshare'=>$workshare))) {
+	$customerID = $dbo->lastInsertId();
+	$querySuccess = true;
+} else {
+	echo ("<p>Error inserting Customer information into database.  Please contact Site Administrator.</p>");
 }
-echo "</table>";
+
+
 /*
 * Place customerID, CSA type, and location into Cust_has_CSA table
 * Multiple entries needed if Customer has more than one CSA
@@ -67,54 +58,38 @@ if($membership == 0) {
 	//No CSA present, coffee only
 	//Insert coffeeSelection into table
 	$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$coffeeSelection','$locations')");
-	$query->execute(array('cid'=>$customerID, 'csaid'=>$coffeeSelection, 'lid'=>$locations));
-	$result = $dbo->prepare("SELECT * FROM Cust_has_CSA");
-	$result->execute();
-	echo "<table>";
-	while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-		echo "<tr>";
-		foreach($row as $value) {
-			echo "<td>{$value}</td>";
-		}
-		echo "</tr>";
+	if($query->execute(array('cid'=>$customerID, 'csaid'=>$coffeeSelection, 'lid'=>$locations))) {
+		$querySuccess = true;
+	} else {
+		echo ("<p>Error inserting Customer information into database.  Please contact Site Administrator.</p>");
 	}
-	echo "</table>";
+
 } else if($membership != 0) {
 	//CSA is present, check for coffee
 	if($coffeeSelection == 0) {
 		//No coffee
 		//Insert membership into table
 		$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$membership','$locations')");
-		$query->execute(array('cid'=>$customerID, 'csaid'=>$membership, 'lid'=>$locations));
-	$result = $dbo->prepare("SELECT * FROM Cust_has_CSA");
-	$result->execute();
-	echo "<table>";
-	while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-		echo "<tr>";
-		foreach($row as $value) {
-			echo "<td>{$value}</td>";
+		if($query->execute(array('cid'=>$customerID, 'csaid'=>$membership, 'lid'=>$locations))) {
+			$querySuccess = true;
+		} else {
+			echo ("<p>Error inserting Customer information into database.  Please contact Site Administrator.</p>");
 		}
-		echo "</tr>";
-	}
-	echo "</table>";
 	} else if($coffeeSelection != 0) {
 		//Coffee
 		//Insert both membership and coffeeSelection into table
 		$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$membership','$locations')");
-		$query->execute(array('cid'=>$customerID, 'csaid'=>$membership, 'lid'=>$locations));
-		$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$coffeeSelection','$locations')");
-		$query->execute(array('cid'=>$customerID, 'csaid'=>$coffeeSelection, 'lid'=>$locations));
-		$result = $dbo->prepare("SELECT * FROM Cust_has_CSA");
-		$result->execute();
-		echo "<table>";
-		while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-			echo "<tr>";
-			foreach($row as $value) {
-				echo "<td>{$value}</td>";
-			}
-			echo "</tr>";
+		if($query->execute(array('cid'=>$customerID, 'csaid'=>$membership, 'lid'=>$locations))) {
+			$querySuccess = true;
+		} else {
+			echo ("<p>Error inserting Customer information into database.  Please contact Site Administrator.</p>");
 		}
-		echo "</table>";
+		$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$coffeeSelection','$locations')");
+		if($query->execute(array('cid'=>$customerID, 'csaid'=>$coffeeSelection, 'lid'=>$locations))) {
+			$querySuccess = true;
+		} else {
+			echo ("<p>Error inserting Customer information into database.  Please contact Site Administrator.</p>");
+		}
 	}
 }
 /*
@@ -124,21 +99,18 @@ if($membership == 0) {
 if($membership == 3 || $membership == 4) {
 	//Get initial balance from CSAType table
 	$query = $dbo->query("SELECT price FROM CSAType WHERE csaid='$membership'");
-	$array = $query->fetch();
-	$balance = $array[0];
-	echo ($balance.'<br />');
-	$query = $dbo->prepare("INSERT INTO Cust_has_Bal (cid, balance) values ('$customerID','$balance')");
-	$query->execute(array('cid'=>$customerID, 'balance'=>$balance));
-	$result = $dbo->prepare("SELECT * FROM Cust_has_Bal");
-	$result->execute();
-	echo "<table>";
-	while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-		echo "<tr>";
-		foreach($row as $value) {
-			echo "<td>{$value}</td>";
-		}
-		echo "</tr>";
+	if($array = $query->fetch()) {
+		$balance = $array[0];
+		$querySuccess = true;
+	} else {
+		echo ("<p>Error inserting Customer information into database.  Please contact Site Administrator.</p>");
 	}
-	echo "</table>";
+}
+
+if($querySuccess) {
+	echo ("<p>Customer information successfully entered into database.</p>");
+	echo ("<p>Redirecting to <a href='../main.php'>homepage</a></p>");
 }
 ?>
+</body>
+</html>

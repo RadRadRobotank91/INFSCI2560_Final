@@ -1,5 +1,18 @@
 var membershipAmountDue = 50;
-var membershipType = "Aloe"
+var membershipType = "Aloe";
+var coffeeType = "Mint";
+var location = "Earth";
+
+function updateSelection () {
+	var ddl1Select = document.getElementById("ddl1");
+	membershipType = ddl1Select.options[ddl1Select.selectedIndex].text;
+	var ddl2Select = document.getElementById("ddl2");
+	coffeeType = ddl1Select.options[ddl2Select.selectedIndex].text;
+	document.getElementById("plans").innerHTML = '<strong>Plan(s): </strong>' + membershipType + ' ' + coffeeType;
+	var ddl3Select = document.getElementById("ddl3");
+	location = ddl3Select.options[ddl3Select.selectedIndex].text;
+	document.getElementById("pickup").innerHTML = '<strong>Preferred Pick-up Location: </strong>' + location;
+}
 
 //Add 14 days to the current date.
 function setDueDate (nDate) {
