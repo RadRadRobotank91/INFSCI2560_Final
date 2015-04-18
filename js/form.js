@@ -1,17 +1,16 @@
-var membershipAmountDue = 50;
-var membershipType = "Aloe";
-var coffeeType = "Mint";
-var location = "Earth";
+var membershipType;
+var coffeeType;
+var location;
 
-function updateSelection () {
-	var ddl1Select = document.getElementById("ddl1");
-	membershipType = ddl1Select.options[ddl1Select.selectedIndex].text;
-	var ddl2Select = document.getElementById("ddl2");
-	coffeeType = ddl1Select.options[ddl2Select.selectedIndex].text;
-	document.getElementById("plans").innerHTML = '<strong>Plan(s): </strong>' + membershipType + ' ' + coffeeType;
-	var ddl3Select = document.getElementById("ddl3");
-	location = ddl3Select.options[ddl3Select.selectedIndex].text;
-	document.getElementById("pickup").innerHTML = '<strong>Preferred Pick-up Location: </strong>' + location;
+function toggleMarketingOther(newVal){
+  var e=document.getElementById('marketingOther');
+  if ( newVal == '3' || newVal == '10' ) {
+    e.style.display='block';
+    e.required = true;
+  } else { 
+    e.style.display='none';
+    e.required = false;
+  }
 }
 
 //Add 14 days to the current date.
@@ -64,72 +63,13 @@ $(document).ready(function() {
 		dueDateString = CutOffDate;
 	}
 
-	document.getElementById("paymentWarning").innerHTML = '<strong>A $100 minimum deposit is required to reserve a membership.</strong> You must send a check by ' +
-	dueDateString + ' or your membership will be forfeited.  Send your check to: <br /><br />One Woman Farm<br />PO Box 17<br />Bradford Woods, PA 15015';
+	document.getElementById("paymentWarning").innerHTML = '<br /><strong>A $100 minimum deposit is required to reserve a membership.</strong> You must send a check by ' +
+	dueDateString + ' or your membership will be forfeited.  <br /><br />Send your check to:<br />One Woman Farm<br />PO Box 17<br />Bradford Woods, PA 15015<br />';
+
+  /* Tooltip Plug-ins */ 
+  $("span.csaTT").hover(function () {
+    $(this).append('<div class="tooltip"><ul><li><strong>Standard Vegetable CSA</strong> is a weekly (23 week) or bi-weekly (12 week) pick-up of a box of fresh, local vegetables.</li><li><strong>OWF CSA Market Membership</strong> lets you pick out exactly what and how much you want for the week from OWF farmers market stands. One Woman Farm will add an additional 7&#37; credit to your account.</li><li><strong>Coffee CSA</strong> is a bi-weekly (12 week) pick-up of 1lb of organic coffee. It can be added to your Standard Vegetable CSA or Market Membership, or selected as a standalone CSA plan.</li></ul></div>');
+  }, function () {
+    $("div.tooltip").remove();
+  });
 });
-
-function AjaxFunction() {
-	/* This function is an adaptation from a tutorial on plus2net *
-	 * http://www.plus2net.com/php_tutorial/ajax_drop_down_list.php */
-	 
-  var httpxml;
-  try
-  {
-  // Firefox, Opera 8.0+, Safari
-  httpxml=new XMLHttpRequest();
-  }
-  catch (e)
-  {
-  // Internet Explorer
-    try
-  		{
-  				 httpxml=new ActiveXObject("Msxml2.XMLHTTP");
-  		}
-  	catch (e)
-  		{
-  		 try
-  		  {
-  		    httpxml=new ActiveXObject("Microsoft.XMLHTTP");
-  		  }
-  		 catch (e)
-  		  {
-  		    alert("Your browser does not support AJAX!");
-  		    return false;
-  		  }
-  	  }
-  }
-  function stateck() {
-    if(httpxml.readyState==4)
-    {
-      //alert(httpxml.responseText);
-      var myarray = JSON.parse(httpxml.responseText);
-      // Remove the options from 2nd dropdown list 
-      for(j=document.registration.subcat.options.length-1;j>=0;j--)
-      {
-        document.registration.subcat.remove(j);
-      }
-      for (i=0;i<myarray.data.length;i++)
-      {
-        var optn = document.createElement("OPTION");
-        optn.text = myarray.data[i].name;
-        optn.value = myarray.data[i].lid;  // You can change this to subcategory 
-        document.registration.subcat.options.add(optn);
-      } 
-    }
-  } // end of function stateck
-
-	var url="../php/dd.php";
-  var cat=document.getElementById('ddl1').value;
-  var cat2=document.getElementById('ddl2').value;
-  if (!cat) {
-    cat=0;
-  }
-  if (!cat2) {
-    cat2=0;
-  }
-  url=url+"?cat="+cat+"&cat2="+cat2;
-  httpxml.onreadystatechange=stateck;
-  //alert(url);
-  httpxml.open("GET",url,true);
-  httpxml.send(null);
-} // end of function AjaxFunction

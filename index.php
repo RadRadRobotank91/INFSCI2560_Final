@@ -25,9 +25,9 @@
 		<script src="js/form.js" type="text/javascript"></script>
 		<link href="css/content.css" rel="stylesheet" type="text/css" media="screen,tv,projection" />
 		<script type="text/javascript"> 
-		$(document).ready(function(){ 
-			$("ul.sf-menu").superfish(); 
-		}); 
+			$(document).ready(function(){ 
+				$("ul.sf-menu").superfish(); 
+			}); 
 		</script>
 
 	<!--[if IE 6]>
@@ -43,232 +43,173 @@
 		<![endif]-->
 
 	<style type='text/css'>
-	div#imagegrid_image1 {
-		background-image:url("images/backTruck.jpg");
-		background-position: -5px -16px;
-	}	
-	div#imagegrid_image2 {
-		background-image:url("images/truckField.jpg");
-		background-position: -18px -96px;
-	}	
-	div#imagegrid_image3 {
-		background-image:url("images/veggies.jpg");
-		background-position: -87px -20px;
-	}	
-	div#imagegrid_image4 {
-		background-image:url("images/veggieSale.jpg");
-		background-position: -89px -183px;
-	}	
-	div#imagegrid_image5 {
-		background-image:url("images/field.jpg");
-		background-position: -46px -122px;
-	}	
-	div#imagegrid_internal #imagegrid_image6 {
-		background-image:url("images/ground.jpg");
-		background-position: -1px -29px;
-	}	
-	div#imagegrid_internal #imagegrid_image7 {
-		background-image:url("images/hiddenMargaret.jpg");
-		background-position: -0px -16px;
-	}	
-	div#imagegrid_internal #imagegrid_image8 {
-		background-image:url("images/openFruit.jpg");
-		background-position: -0px -56px;
-	}	
-	div#logo h1 .name-pt1 {
-		color: #c2beb2;
-	}
-	div#logo h1 .name-pt2 {
-		color: #8b836e;
-	}
-	body {
-		background-color: #c2beb2;
-	}
-	div#imagegrid, div#imagegrid_internal {
-		background-color: #d9d473;
-	}
-	div#content_wrap {
-		background-color: #c2beb2;
-	}
-	ul.main_nav li, div#main_nav, div#footer, ul.main_nav li, ul.main_nav li.active {
-		background-color: #8b836e;
-	}
-	ul.main_nav li.active a:hover,ul.main_nav li.sfHover a:hover {
-		background-color:#c2beb2;
-	}
-	a {
-		color: #8b836e;
-	}			
-	a:hover {
-		background-color: #8b836e;
-	}
-	.frontpage h1, .frontpage h1 a,.frontpage h1 a:hover {
-		color: #8b836e;
-		background-color:transparent;
-	}
+		/* Local Overrides to CMS Declarations */ 
+		div#imagegrid_image1 {
+			background-image:url("images/backTruck.jpg");
+			background-position: -5px -16px;
+		}	
+		div#imagegrid_image2 {
+			background-image:url("images/truckField.jpg");
+			background-position: -18px -96px;
+		}	
+		div#imagegrid_image3 {
+			background-image:url("images/veggies.jpg");
+			background-position: -87px -20px;
+		}	
+		div#imagegrid_image4 {
+			background-image:url("images/veggieSale.jpg");
+			background-position: -89px -183px;
+		}	
+		div#imagegrid_image5 {
+			background-image:url("images/field.jpg");
+			background-position: -46px -122px;
+		}	
+		div#imagegrid_internal #imagegrid_image6 {
+			background-image:url("images/ground.jpg");
+			background-position: -1px -29px;
+		}	
+		div#imagegrid_internal #imagegrid_image7 {
+			background-image:url("images/hiddenMargaret.jpg");
+			background-position: -0px -16px;
+		}	
+		div#imagegrid_internal #imagegrid_image8 {
+			background-image:url("images/openFruit.jpg");
+			background-position: -0px -56px;
+		}	
+		div#logo h1 .name-pt1 {
+			color: #c2beb2;
+		}
+		div#logo h1 .name-pt2 {
+			color: #8b836e;
+		}
+		body {
+			background-color: #c2beb2;
+		}
+		div#imagegrid, div#imagegrid_internal {
+			background-color: #d9d473;
+		}
+		div#content_wrap {
+			background-color: #c2beb2;
+		}
+		ul.main_nav li, div#main_nav, div#footer, ul.main_nav li, ul.main_nav li.active {
+			background-color: #8b836e;
+		}
+		ul.main_nav li.active a:hover,ul.main_nav li.sfHover a:hover {
+			background-color:#c2beb2;
+		}
+		a {
+			color: #8b836e;
+		}			
+		a:hover {
+			background-color: #8b836e;
+		}
+		.frontpage h1, .frontpage h1 a,.frontpage h1 a:hover {
+			color: #8b836e;
+			background-color:transparent;
+		}
 	</style>
-	<style type="text/css">
-      ::-webkit-input-placeholder {
-      	font-size:14px;
-        color: gray;
-      }
-
-      :-moz-placeholder { /* Firefox 18- */
-        font-size:14px;
-        color: gray;  
-      }
-
-      ::-moz-placeholder {  /* Firefox 19+ */
-      	font-size:14px;
-        color: gray;  
-      }
-
-      :-ms-input-placeholder {  
-      	font-size:14px;
-        color: gray;  
-      }
-
-      .form-label { display:block; float:left; width: 110px;text-align: right; margin-right: 5px; height:40px; line-height: 45px;}
-      .row input[type="text"], .row input[type="email"] { width:300px; height:40px; font-size:14px; }
-      .row input[type="text"].extendInput { width:415px; height:40px; font-size:14px; }
-      .row { margin: 5px 3px; clear:left;}
-      .row select { width:310px; height:40px; font-size:14px; }
-      h3 { margin-top: 25px; }
-      h3.first { margin-top:10px;}
-
-/*------------------------------------------------*/
-/* TOOLTIP */ 
-/* http://www.davidjrush.com/blog/2011/12/simple-jquery-tooltip/ */
-/*------------------------------------------------*/   
-
-span.question {
-  cursor: pointer;
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background-color: #89A4CC;
-  line-height: 16px;
-  color: White;
-  font-size: 11px;
-  font-weight: normal;
-  font-family: sans-serif;
-  border-radius: 6px;
-  text-align: center;
-  position: relative;
-}
-span.question:hover { background-color: #D5E1F5; }
-div.tooltip {
-  background-color: #D5E1F5;
-  color: #000;
-  font-size:14px;
-  line-height: 22px;
-  font-family: sans-serif;
-  position: absolute;
-  left: 25px;
-  top: -25px;
-  z-index: 1000000;
-  width: 500px;
-  padding:20px;
-  text-align: left;
-  border-radius: 5px;
-}
-div.tooltip:before {
-  border-color: transparent #3D6199 transparent transparent;
-  border-right: 6px solid #3D6199;
-  border-style: solid;
-  border-width: 6px 6px 6px 0px;
-  content: "";
-  display: block;
-  height: 0;
-  width: 0;
-  line-height: 0;
-  position: absolute;
-  top: 40%;
-  left: -6px;
-}
-div.tooltip p {
-  margin: 10px;
-  color: White;
-  text-align:left;
-  font-weight:normal;
-}
-    
-    </style>
-    <script>
-
-	$(document).ready(function(){
-      /* Tooltip Plug-ins */ 
-      $("span.csaTT").hover(function () {
-        $(this).append('<div class="tooltip"><ul><li><strong>Standard Vegetable CSA</strong> is a weekly (23 week) or bi-weekly (12 week) pick-up of a box of fresh, local vegetables.</li><li><strong>OWF CSA Market Membership</strong> lets you pick out exactly what and how much you want for the week from OWF farmers market stands. One Woman Farm will add an additional 7&#37; credit to your account.</li><li><strong>Coffee CSA</strong> is a bi-weekly (12 week) pick-up of 1lb of organic coffee. It can be added to your Standard Vegetable CSA or Market Membership, or selected as a standalone CSA plan.</li></ul></div>');
-      }, function () {
-        $("div.tooltip").remove();
-      });
-	});
+    <script type="text/javascript">
+	
 	function AjaxFunction() {
 	/* This function is an adaptation from a tutorial on plus2net *
 	 * http://www.plus2net.com/php_tutorial/ajax_drop_down_list.php */
 
-  var httpxml;
-  try
-  {
-  // Firefox, Opera 8.0+, Safari
-  httpxml=new XMLHttpRequest();
-  }
-  catch (e)
-  {
-  // Internet Explorer
-    try
-  		{
-  				 httpxml=new ActiveXObject("Msxml2.XMLHTTP");
-  		}
-  	catch (e)
-  		{
-  		 try
-  		  {
-  		    httpxml=new ActiveXObject("Microsoft.XMLHTTP");
-  		  }
-  		 catch (e)
-  		  {
-  		    alert("Your browser does not support AJAX!");
-  		    return false;
-  		  }
-  	  }
-  }
-  function stateck() {
-    if(httpxml.readyState==4)
-    {
-      //alert(httpxml.responseText);
-      var myarray = JSON.parse(httpxml.responseText);
-      // Remove the options from 2nd dropdown list 
-      for(j=document.registration.subcat.options.length-1;j>=0;j--)
-      {
-        document.registration.subcat.remove(j);
-      }
-      for (i=0;i<myarray.data.length;i++)
-      {
-        var optn = document.createElement("OPTION");
-        optn.text = myarray.data[i].name;
-        optn.value = myarray.data[i].lid;  // You can change this to subcategory 
-        document.registration.subcat.options.add(optn);
-      } 
-    }
-  } // end of function stateck
+	  var httpxml;
+	  try
+	  {
+	  // Firefox, Opera 8.0+, Safari
+	  httpxml=new XMLHttpRequest();
+	  }
+	  catch (e)
+	  {
+	  // Internet Explorer
+	    try
+	  		{
+	  				 httpxml=new ActiveXObject("Msxml2.XMLHTTP");
+	  		}
+	  	catch (e)
+	  		{
+	  		 try
+	  		  {
+	  		    httpxml=new ActiveXObject("Microsoft.XMLHTTP");
+	  		  }
+	  		 catch (e)
+	  		  {
+	  		    alert("Your browser does not support AJAX!");
+	  		    return false;
+	  		  }
+	  	  }
+	  }
+	  function stateck() {
+	    if(httpxml.readyState==4)
+	    {
+	      //alert(httpxml.responseText);
+	      var myarray = JSON.parse(httpxml.responseText);
+	      // Remove the options from 2nd dropdown list 
+	      for(j=document.registration.subcat.options.length-1;j>=0;j--)
+	      {
+	        document.registration.subcat.remove(j);
+	      }
+	      for (i=0;i<myarray.data.length;i++)
+	      {
+	        var optn = document.createElement("OPTION");
+	        optn.text = myarray.data[i].name;
+	        optn.value = myarray.data[i].lid;  // You can change this to subcategory 
+	        document.registration.subcat.options.add(optn);
+	      } 
+	    }
+	  } // end of function stateck
 
-	var url="dd.php";
-  var cat=document.getElementById('ddl1').value;
-  var cat2=document.getElementById('ddl2').value;
-  if (!cat) {
-    cat=0;
-  }
-  if (!cat2) {
-    cat2=0;
-  }
-  url=url+"?cat="+cat+"&cat2="+cat2;
-  httpxml.onreadystatechange=stateck;
-  //alert(url);
-  httpxml.open("GET",url,true);
-  httpxml.send(null);
-} // end of function AjaxFunction
+		var url="dd.php";
+	  var cat=document.getElementById('ddl1').value;
+	  var cat2=document.getElementById('ddl2').value;
+
+	  if (!cat) {
+	    cat=0;
+	  }
+	  if (!cat2) {
+	    cat2=0;
+	  }
+	  url=url+"?cat="+cat+"&cat2="+cat2;
+	  httpxml.onreadystatechange=stateck;
+	  //alert(url);
+	  httpxml.open("GET",url,true);
+	  httpxml.send(null);
+
+	  var res1 = 0.00;
+	  var res2 = 0.00;
+	  var d1 = $("#ddl1 option:selected").text();
+	  if (!d1.match(/^\$/)) {
+	  	d1 = "";
+	  } else {
+	  	res1 = d1.substring(1, 7);
+	  	d1 = "&nbsp;&nbsp;&bull;&nbsp;" + d1 + "<br />";
+	  }
+	  var d2 = $("#ddl2 option:selected").text();
+	  if (!d2.match(/^\$/)) {
+	  	d2 = "";
+	  } else {
+	  	res2 = d2.substring(1, 7);
+	  	d2 = "&nbsp;&nbsp;&bull;&nbsp;" + d2;
+	  }
+	  if (d2) { 
+	  	var hasComma = ", ";
+	  	var hasBr = "<br />";
+	  } 
+	  document.getElementById("plans").innerHTML = "<strong>Plan(s): </strong><br />" + d1  + d2;
+	  document.getElementById("pickup").innerHTML = "<strong>Preferred Pick-up Location: </strong> East Liberty Farmers Market";
+	  
+	  //alert(res1 + " " + res2);
+      var total  = parseFloat(res1) + parseFloat(res2);
+      document.getElementById("amountDue").innerHTML = "<strong>Total Amount Due: &#36;</strong>" + total;
+	} // end of function AjaxFunction
+
+	function updateSelection () {
+		//alert("onChangeWorking");
+	  var d3 = $("#ddl3 option:selected").text();
+	  document.getElementById("pickup").innerHTML = "<strong>Preferred Pick-up Location: </strong>" + d3;
+	}
+
     </script>
 </head>
 <body>
@@ -389,54 +330,59 @@ div.tooltip p {
 								<div class="row">
 									<label>Choose a CSA&nbsp;&nbsp;<span class="question csaTT">?</span></label><br />
 									<!-- Add first list box -->
-    <?php
-      require "php/config.php";// connection to database 
+								    <?php
+								      require "php/config.php";// connection to database 
 
-      echo "<select name='cat' id='ddl1' onchange=AjaxFunction();> 
-      <option value='0'>Select One</option>"; 
+								      echo "<select name='cat' id='ddl1' required onchange='AjaxFunction();'> 
+								      <option value=''>Select One</option>"; 
 
-      $sql="select * from CSAType WHERE csaid < '5'"; // Query to collect data from table 
+								      $sql="select * from CSAType WHERE csaid < '5'"; // Query to collect data from table 
 
-      foreach ($dbo->query($sql) as $row) {
-        echo "<option value=$row[csaid]>$row[price] - $row[type]</option>";
-      }
-    ?>
-    </select>
-    <br />
+								      foreach ($dbo->query($sql) as $row) {
+								        echo "<option value=$row[csaid]>&#36;$row[price] - $row[type]</option>";
+								      }
+								    ?>
+								    <option value='99'>None, I only want coffee</option>
+								    </select>
+								    <br />
 								</div>
 
 
 								<div class="row">
-								<label>Add a coffee option</label><br />
-								<!-- Add second list box -->
-    <?php
-      require "php/config.php";// connection to database 
+									<label>Add a coffee option</label><br />
+									<!-- Add second list box -->
+								    <?php
+								      require "php/config.php";// connection to database 
 
-      echo "<select name='cat2' id='ddl2' onchange=AjaxFunction();> 
-      <option value='0'>Select One</option>"; 
+								      echo "<select name='cat2' id='ddl2' required onchange='AjaxFunction();'> 
+								      <option value=''>Select One</option>"; 
 
-      $sql="select * from CSAType WHERE csaid > '4' AND csaid < '99'"; // Query to collect data from table 
+								      $sql="select * from CSAType WHERE csaid > '4' AND csaid < '99'"; // Query to collect data from table 
 
-      foreach ($dbo->query($sql) as $row) {
-        echo "<option value=$row[csaid]>$row[price] - $row[type]</option>";
-      }
-    ?>
-    </select>
-    <br />
-
+								      foreach ($dbo->query($sql) as $row) {
+								        echo "<option value=$row[csaid]>&#36;$row[price] - $row[type]</option>";
+								      }
+								    ?>
+								    <option value='99'>Thanks, but no coffee for me</option>
+								    </select>
+								    <br />
 								</div>
+
 								<div class="row">
 									<div id="coffee"></div>
 								</div>
 
 								<h3>Primary Pick-up Location</h3>
-								<a href="#" target="_blank">View Locations on Google Maps</a><br />
+								<!--<a href="#" target="_blank">View Locations on Google Maps</a><br />  Omitted for now -->
 								
 								<div class="row">
-								<select name='subcat' id='ddl3'><option value=''>Select a CSA Plan First</option></select>
+									<select name='subcat' id='ddl3' required onchange="updateSelection();"><option value=''>Select a CSA Plan First</option></select>
 								</div>
 
-								<div class="row"><label>Name(s) of <em>other</em> people designated to use this CSA</label><br /><input class="extendInput" type="text" name="otherMembers" id="otherMembers" placeholder="Your Family Member's Name, Your Friend's Name, etc." maxlength="255" value="" required/></div>
+								<div class="row">
+									<label>Name(s) of <em>other</em> people designated to use this CSA</label><br />
+									<input class="extendInput" type="text" name="otherMembers" id="otherMembers" placeholder="Your Family Member's Name, Your Friend's Name, etc." maxlength="255" value="" />
+								</div>
 
 								<h3>Account Information</h3>
 								<div class="row"><label class="form-label">First Name&nbsp;&nbsp;</label><input type="text" name="firstName" id="firstName" placeholder="John" maxlength="50" value="" required /></div>
@@ -444,51 +390,53 @@ div.tooltip p {
 								<div class="row"><label class="form-label">Address&nbsp;&nbsp;</label><input type="text" name="address" id="address" placeholder="123 Your Street, Apt#2" maxlength="255" value="" required /></div>
 								<div class="row"><label class="form-label">City&nbsp;&nbsp;</label><input type="text" name="city" id="city" value="" placeholder="Pittsburgh" maxlength="255" required /></div>
 								<div class="row"><label class="form-label">State&nbsp;&nbsp;</label><input type="text" name="state" maxlength="2"  id="state" value="" placeholder="PA" required /></div>
-								<div class="row"><label class="form-label">Zip&nbsp;&nbsp;</label><input type="text" name="zip" id="zip" placeholder="15227" maxlength="12" value="" required /></div>
+								<div class="row"><label class="form-label">Zip&nbsp;&nbsp;</label><input type="text" name="zip" id="zip" pattern="(\d{5}([\-]\d{4})?)" title="Please enter a valid zip code." placeholder="12345-1234" maxlength="10" value="" required /></div>
 								<div class="row"><label class="form-label">Phone&nbsp;&nbsp;</label><input type="text" name="phoneNumber" id="phoneNumber" placeholder="555-555-5555" maxlength="20" value="" required /></div>
 								<div class="row"><label class="form-label">E-mail&nbsp;&nbsp;</label><input type="email" name="email" id="email" placeholder="jsmith@example.com" maxlength="255" value="" required /></div>
-								<div class="row"><label class="form-label">Verify E-mail&nbsp;&nbsp;</label><input type="email" name="email2" id="email2" placeholder="jsmith@example.com" maxlength="255" value="" required /></div>
+								<!-- I read an article discussing the pros and cons of adding a Verify Email box. In short, it was more of a con to add one than to use one -->
+								<!--<div class="row"><label class="form-label">Verify E-mail&nbsp;&nbsp;</label><input type="email" name="email2" id="email2" placeholder="jsmith@example.com" maxlength="255" value="" /></div>-->
 								<div class="row"><br /><label>How did you hear about One Woman Farm?</label><br />
 									<!-- Add second list box -->
-    <?php
-      require "php/config.php";// connection to database 
+								    <?php
+								      require "php/config.php";// connection to database 
 
-      echo "<select name='marketing' id='ddl4'> 
-      <option value='0'>Select One</option>"; 
+								      echo "<select name='marketing' id='ddl4' required onchange='toggleMarketingOther(this.value)'> 
+								      <option value=''>Select One</option>"; 
 
-      $sql="select * from Marketing"; // Query to collect data from table 
+								      $sql="select * from Marketing"; // Query to collect data from table 
 
-      foreach ($dbo->query($sql) as $row) {
-        echo "<option value=$row[mid]>$row[channel]</option>";
-      }
-    ?>
-    </select>
-    <br />
-									<input type="text" name="marketingOther" placeholder="Referral Name or Other" maxlength="255"  value="" required /></div>
+								      foreach ($dbo->query($sql) as $row) {
+								        echo "<option value=$row[mid]>$row[channel]</option>";
+								      }
+								    ?>
+								    </select>
+								    <br />
+									<input type="text" name="marketingOther" id="marketingOther" style="display:none;" placeholder="Referral Name or Other" maxlength="255"  value="" required />
+								</div>
 								
 
 								
 
 								<h3>Payment</h3>
-								<p>
+								<p id="summary">
 								<span id="date"><strong>Current Date: </strong></span><br />
 								<span id="plans"><strong>Plan(s): </strong></span><br />
 								<span id="pickup"><strong>Preferred Pick-up Location: </strong></span><br />
 								<span id="amountDue"><strong>Total Amount Due: </strong></span></p>
 								
+								<label>Select a payment method.</label><br />
+								<div class="row" id="fullAmount"><input type="radio" requierd name="check" value="0" /> I will send a check for the full amount.</div>
+								<div class="row" id="halfAmount"><input type="radio" required name="check" value="1" /> I will send a check for half the amount by April 30th.  The remaining half will be sent by May 30th.</div>
 								
 								<div class="row">
-									<label>Are you part of the OWF Workshare?</label><br />
-									<input type="radio" name="workshare" value="0" /> No <br />
-									<input type="radio" name="workshare" value="1" /> Yes (Discounts will be given after approval from OWF) 
-								</div>
+									<label>Did you participate in the OWF Workshare?</label><br />
+									<input type="radio" required name="workshare" value="0" /> No <br />
+									<input type="radio" required name="workshare" value="1" /> Yes (Discounts will be given after approval from OWF) 
+								</div>								
 
-								<label>Select a payment method.</label><br />
-								<div class="row" id="fullAmount"><input type="radio" name="check" value="totalCheck" /> I will send a check for the full amount.</div>
-								<div class="row" id="halfAmount"><input type="radio" name="check" value="halfCheck" /> I will send a check for half the amount by April 30th.  The remaining half will be sent by May 30th.</div>
-								<div class="row" id="paymentWarning"><strong>A $100 minimum deposit is required to reserve a membership.</strong> You must send a check within 14 days of registering or your membership will be forfeited. Send your check to: <br /><br />One Woman Farm<br />PO Box 17<br />Bradford Woods, PA 15015</p>
+								<div class="row" id="paymentWarning"><strong>A $100 minimum deposit is required to reserve a membership.</strong>You must send a check within 14 days of registering or your membership will be forfeited. <br /><br />Send your check to:<br />One Woman Farm<br />PO Box 17<br />Bradford Woods, PA 15015</p></div>
 								<div class="row"><input type="checkbox" name="acknowledge" value="acknowledge" required /> By checking this box, I acknolwedge that I have read and understand the OWF CSA Membership Agreement.</div>
-								<input type="submit" name="submit" value="Submit your CSA Registration" />
+								<div class="row"><input type="submit" name="submit" value="Submit your CSA Registration" /></div>
 							</form>
 						</div>
 					</div>
