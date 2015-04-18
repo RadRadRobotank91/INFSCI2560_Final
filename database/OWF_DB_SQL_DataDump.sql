@@ -18,6 +18,7 @@
 
 CREATE TABLE `CSALocation` (
   `lid` int(11) NOT NULL AUTO_INCREMENT,
+  `cat` int(1) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -25,19 +26,39 @@ CREATE TABLE `CSALocation` (
   `zip` varchar(12) COLLATE utf8_unicode_ci DEFAULT NULL,
   `time` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 -- 
 -- Dumping data for table `CSALocation`
 -- 
 
-INSERT INTO `CSALocation` VALUES (default, 'East Liberty Farmers Market', 'Station St', 'Pittsburgh', 'PA', '15206', 'Monday Afternoon');
-INSERT INTO `CSALocation` VALUES (default, 'Glenshaw Presbyterian Church', '300 Glen Ave', 'Glenshaw', 'PA', '15116', 'Thursday Afternoon');
-INSERT INTO `CSALocation` VALUES (default, 'Mount Lebanon Hillaire Drive', '817 Hillaire Dr', 'Mount Lebanon', 'PA', '15243', 'Monday Afternoon');
-INSERT INTO `CSALocation` VALUES (default, 'One Woman Farm', '5857 Valencia Rd', 'Gibsonia', 'PA', '15044', 'Thursday Afternoon');
-INSERT INTO `CSALocation` VALUES (default, 'Squirrel Hill Farmers Market', '5737 Beacon St', 'Pittsburgh', 'PA', '15217', 'Sunday Mornings');
-INSERT INTO `CSALocation` VALUES (default, 'St. Pauls United Methodist Church', '1965 Ferguson Rd', 'Allison Park', 'PA', '15101', 'Monday Afternoon');
-INSERT INTO `CSALocation` VALUES (default, 'Market Square Farmers Market', '23 Market Place', 'Pittsburgh', 'PA', '15222', 'Thursday Afternoon');
+INSERT INTO `CSALocation` VALUES (default, 3, 'East Liberty Farmers Market', 'Station St', 'Pittsburgh', 'PA', '15206', 'Monday Afternoon');
+INSERT INTO `CSALocation` VALUES (default, 1, 'Glenshaw Presbyterian Church', '300 Glen Ave', 'Glenshaw', 'PA', '15116', 'Thursday Afternoon');
+INSERT INTO `CSALocation` VALUES (default, 1, 'Mount Lebanon Hillaire Drive', '817 Hillaire Dr', 'Mount Lebanon', 'PA', '15243', 'Monday Afternoon');
+INSERT INTO `CSALocation` VALUES (default, 1, 'One Woman Farm', '5857 Valencia Rd', 'Gibsonia', 'PA', '15044', 'Thursday Afternoon');
+INSERT INTO `CSALocation` VALUES (default, 3, 'Squirrel Hill Farmers Market', '5737 Beacon St', 'Pittsburgh', 'PA', '15217', 'Sunday Mornings');
+INSERT INTO `CSALocation` VALUES (default, 1, 'St. Pauls United Methodist Church', '1965 Ferguson Rd', 'Allison Park', 'PA', '15101', 'Monday Afternoon');
+INSERT INTO `CSALocation` VALUES (default, 2, 'Market Square Farmers Market', '23 Market Place', 'Pittsburgh', 'PA', '15222', 'Thursday Afternoon');
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `CSALocation_has_Cat`
+-- 
+
+CREATE TABLE `CSALocation_has_Cat` (
+  `cat` int(11) NOT NULL DEFAULT '0',
+  `loc_desc` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`cat`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- 
+-- Dumping data for table `CSALocation_has_Cat`
+-- 
+
+INSERT INTO `CSALocation_has_Cat` VALUES (1, 'CSA Pickup Only');
+INSERT INTO `CSALocation_has_Cat` VALUES (2, 'Marketshare Only');
+INSERT INTO `CSALocation_has_Cat` VALUES (3, 'Both');
 
 -- --------------------------------------------------------
 
