@@ -3,7 +3,7 @@
 <head>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta http-equiv="refresh" content="5; url=../main.php" />
+	<!--meta http-equiv="refresh" content="5; url=../main.php" /-->
 	
 	<title>Customer Success</title>
 	
@@ -40,14 +40,24 @@ require 'config.php';
  * Place customer information into Customer table
  * Format example: 'Harrison', 'Smith', '123 Main Street', 'Pittsburgh', 'PA', '90210', '867-5309', 'test@test.net', 'Kurt, Maggie', 3, 'Margaret', 0
  */
-$query = $dbo->prepare("INSERT INTO Customer(First_Name, Last_Name, Address, City, State, Zip, Phone, Email, Delegates, mid, midOther, Workshare) VALUES(:First_Name, :Last_Name, :Address, :City, :State, :Zip, :Phone, :Email, :Delegates, :mid, :midOther, :Workshare)");
-if($query->execute(array('First_Name'=>$fName, 'Last_Name'=>$lName, 'Address'=>$address, 'City'=>$city, 'State'=>$state, 'Zip'=>$zip, 'Phone'=>$phone, 'Email'=>$email, 'Delegates'=>$otherMembers, 'mid'=>$marketing, 'midOther'=>$marketingOther, 'Workshare'=>$workshare))) {
+$query = $dbo->prepare("INSERT INTO Customer(First_Name, Last_Name, Address, City, State, Zip, Phone, Email, Delegates, mid, midOther) VALUES('$fName', '$lname', '$address', '$city', '$state', '$zip', '$phone', '$email', '$otherMembers', '$mid', '$midOther')");
+if($query->execute(array('First_Name'=>$fName, 'Last_Name'=>$lName, 'Address'=>$address, 'City'=>$city, 'State'=>$state, 'Zip'=>$zip, 'Phone'=>$phone, 'Email'=>$email, 'Delegates'=>$otherMembers, 'mid'=>$marketing, 'midOther'=>$marketingOther))) {
 	$customerID = $dbo->lastInsertId();
 	$querySuccess = true;
+	$result = $dbo->prepare("SELECT * FROM Customer");
+	$result->execute();
+	echo "<table>";
+	while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+		echo "<tr>";
+		foreach($row as $value) {
+			echo "<td>{$value}</td>";
+		}
+		echo "</tr>";
+	}
+	echo "</table>";
 } else {
-	echo ("<p>Error inserting Customer information into database.  Please contact Site Administrator.</p>");
+	echo ("<p>1 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
 }
-
 
 /*
 * Place customerID, CSA type, and location into Cust_has_CSA table
@@ -61,7 +71,7 @@ if($membership == 0) {
 	if($query->execute(array('cid'=>$customerID, 'csaid'=>$coffeeSelection, 'lid'=>$locations))) {
 		$querySuccess = true;
 	} else {
-		echo ("<p>Error inserting Customer information into database.  Please contact Site Administrator.</p>");
+		echo ("<p>2 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
 	}
 
 } else if($membership != 0) {
@@ -73,7 +83,7 @@ if($membership == 0) {
 		if($query->execute(array('cid'=>$customerID, 'csaid'=>$membership, 'lid'=>$locations))) {
 			$querySuccess = true;
 		} else {
-			echo ("<p>Error inserting Customer information into database.  Please contact Site Administrator.</p>");
+			echo ("<p>2 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
 		}
 	} else if($coffeeSelection != 0) {
 		//Coffee
@@ -82,13 +92,13 @@ if($membership == 0) {
 		if($query->execute(array('cid'=>$customerID, 'csaid'=>$membership, 'lid'=>$locations))) {
 			$querySuccess = true;
 		} else {
-			echo ("<p>Error inserting Customer information into database.  Please contact Site Administrator.</p>");
+			echo ("<p>2 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
 		}
 		$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$coffeeSelection','$locations')");
 		if($query->execute(array('cid'=>$customerID, 'csaid'=>$coffeeSelection, 'lid'=>$locations))) {
 			$querySuccess = true;
 		} else {
-			echo ("<p>Error inserting Customer information into database.  Please contact Site Administrator.</p>");
+			echo ("<p>2 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
 		}
 	}
 }
@@ -103,7 +113,7 @@ if($membership == 3 || $membership == 4) {
 		$balance = $array[0];
 		$querySuccess = true;
 	} else {
-		echo ("<p>Error inserting Customer information into database.  Please contact Site Administrator.</p>");
+		echo ("<p>3 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
 	}
 }
 
