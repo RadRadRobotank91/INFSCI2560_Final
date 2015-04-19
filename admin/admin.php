@@ -1,7 +1,3 @@
-<?php
-	include '../php/transactions.php';
-	include '../php/pickup.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="admin.html">One Woman Farm | Admin Home</a>
+                <a class="navbar-brand" href="admin.php">One Woman Farm | Admin Home</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -142,13 +138,13 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="admin.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a href="admin.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="salesInfo.html"><i class="fa fa-fw fa-table"></i> Sales Information</a>
+                        <a href="salesInfo.php"><i class="fa fa-fw fa-table"></i> Sales Information</a>
                     </li>
                     <li>
-                        <a href="updateUser.html"><i class="fa fa-fw fa-edit"></i> Update User</a>
+                        <a href="updateUser.php"><i class="fa fa-fw fa-edit"></i> Update User</a>
                     </li>
                 </ul>
             </div>
@@ -334,7 +330,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-											echo ("Test");
+											include '../php/transactions.php';
 										?>
                                     </tbody>
                                 </table>
@@ -363,7 +359,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-											echo ("Test");
+											include '../php/pickup.php';
 										?>
                                     </tbody>
                                 </table>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>One Woman Farm | Update Records</title>
+    <title>One Woman Farm | Sales</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -156,70 +156,100 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Update User
+                            Sales Information
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-edit"></i> Update User
+                                <i class="fa fa-table"></i> Sales Information
                             </li>
                         </ol>
                     </div>
                 </div>
                 <!-- /.row -->
-
                 <div class="row">
                     <div class="col-lg-6">
-
-                        <form role="form">
-							<div class="form-group">
-                                <?php
-									include '../autocomplete.php';
-								?>
-                            </div>
-							<div class="form-group">
-                                <label>Return from autocomplete</label>
-                                <p class="form-control-static">First Name</p>
-								<p class="form-control-static">Last Name</p>
-								<p class="form-control-static">Email</p>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Update Marketshare Balance</label>
-                                <input class="form-control" placeholder="43.00">
-                            </div>
-							
-                            <div class="form-group">
-                                <label>Did customer make a pick-up?</label>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="">No
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="">Yes
-                                    </label>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-default">Submit Button</button>
-
-                        </form>
+                        <h2>Transactions</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Transaction #</th>
+                                        <th>Customer ID</th>
+                                        <th>Amount (USD)</th>
+                                        <th>Date</th>
+										<th>Location ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+									<?php
+										include '../php/transactions.php';
+									?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                        <p>For complete documentation, please visit <a href="http://getbootstrap.com/css/#forms">Bootstrap's Form Documentation</a>.</p>
-
                 </div>
                 <!-- /.row -->
-
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>Pick-Ups</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Customer ID</th>
+                                        <th>Date</th>
+										<th>Location ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+									<?php
+										include '../php/pickup.php';
+									?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+				<!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>Workshare</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+										<th>Address</th>
+										<th>City</th>
+										<th>State</th>
+										<th>Zip</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+									<?php
+										include '../php/workshare.php';
+									?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h2>Bootstrap Docs</h2>
+                    <p>For complete documentation, please visit <a target="_blank" href="http://getbootstrap.com/css/#tables">Bootstrap's Tables Documentation</a>.</p>
+                </div>
+                <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
-
         </div>
         <!-- /#page-wrapper -->
-
     </div>
     <!-- /#wrapper -->
 
@@ -228,7 +258,6 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
 </body>
 
 </html>
