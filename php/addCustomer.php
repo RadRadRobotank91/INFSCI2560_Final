@@ -30,6 +30,10 @@ $marketingOther = $_POST['marketingOther'];//midOther
 $workshare = $_POST['workshare'];//workshare (0-1)
 $payment = $_POST['check'];//payment (0-1)
 $acknowledge = $_POST['acknowledge'];//acknowle (0-1)
+$querySuccess = false;
+$querySuccess1 = false;
+$querySuccess2 = false;
+$querySuccess3 = false;
 
 //Testing
 // echo ("Membership".$membership.", "."coffee".$coffeeSelection.", "."locations".$locations.", "."otherMembers".$otherMembers.", ");
@@ -65,50 +69,76 @@ if($query->execute(array('First_Name'=>$fName, 'Last_Name'=>$lName, 'Address'=>$
 	echo ("<p>1 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
 }
 
-echo ($customerID);
+ echo ("customerID: ".$customerID);
+
 /*
 * Place customerID, CSA type, and location into Cust_has_CSA table
 * Multiple entries needed if Customer has more than one CSA
 * Format example: 1, 3, 5
 */
-if($membership == 0) {
-	//No CSA present, coffee only
-	//Insert coffeeSelection into table
-	$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$coffeeSelection','$locations')");
-	if($query->execute(array('cid'=>$customerID, 'csaid'=>$coffeeSelection, 'lid'=>$locations))) {
-		$querySuccess = true;
+// if($membership == 0) {
+// 	//No CSA present, coffee only
+// 	//Insert coffeeSelection into table
+// 	$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$coffeeSelection','$locations')");
+// 	if($query->execute(array('cid'=>$customerID, 'csaid'=>$coffeeSelection, 'lid'=>$locations))) {
+// 		$querySuccess = true;
+// 	} else {
+// 		echo ("<p>2 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
+// 	}
+
+// } else if($membership != 0) {
+// 	//CSA is present, check for coffee
+// 	if($coffeeSelection == 0) {
+// 		//No coffee
+// 		//Insert membership into table
+// 		$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$membership','$locations')");
+// 		if($query->execute(array('cid'=>$customerID, 'csaid'=>$membership, 'lid'=>$locations))) {
+// 			$querySuccess = true;
+// 		} else {
+// 			echo ("<p>2 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
+// 		}
+// 	} else if($coffeeSelection != 0) {
+// 		//Coffee
+// 		//Insert both membership and coffeeSelection into table
+// 		$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$membership','$locations')");
+// 		if($query->execute(array('cid'=>$customerID, 'csaid'=>$membership, 'lid'=>$locations))) {
+// 			$querySuccess = true;
+// 		} else {
+// 			echo ("<p>2 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
+// 		}
+// 		$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$coffeeSelection','$locations')");
+// 		if($query->execute(array('cid'=>$customerID, 'csaid'=>$coffeeSelection, 'lid'=>$locations))) {
+// 			$querySuccess = true;
+// 		} else {
+// 			echo ("<p>2 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
+// 		}
+// 	}
+// }
+
+if(!empty($membership) || $membership != 99) {
+	//CSA has Value
+	$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) VALUES ('$customerID','$membership','$locations')");
+	if($query->execute(array('cid'=>$customerID, 'csaid'=>$membership, 'lid'=>$locations))) {
+		$querySuccess1 = true;
+		// echo("Membership inserted to Cust has csa");
 	} else {
 		echo ("<p>2 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
 	}
 
-} else if($membership != 0) {
-	//CSA is present, check for coffee
-	if($coffeeSelection == 0) {
-		//No coffee
-		//Insert membership into table
-		$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$membership','$locations')");
-		if($query->execute(array('cid'=>$customerID, 'csaid'=>$membership, 'lid'=>$locations))) {
-			$querySuccess = true;
-		} else {
-			echo ("<p>2 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
-		}
-	} else if($coffeeSelection != 0) {
-		//Coffee
-		//Insert both membership and coffeeSelection into table
-		$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$membership','$locations')");
-		if($query->execute(array('cid'=>$customerID, 'csaid'=>$membership, 'lid'=>$locations))) {
-			$querySuccess = true;
-		} else {
-			echo ("<p>2 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
-		}
-		$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$coffeeSelection','$locations')");
-		if($query->execute(array('cid'=>$customerID, 'csaid'=>$coffeeSelection, 'lid'=>$locations))) {
-			$querySuccess = true;
-		} else {
-			echo ("<p>2 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
-		}
+} 
+if(!empty($coffeeSelection) || $coffeeSelection != 99) {
+	//Coffee Selection has Value
+	$query = $dbo->prepare("INSERT INTO Cust_has_CSA (cid, csaid, lid) values ('$customerID','$coffeeSelection','$locations')");
+	if($query->execute(array('cid'=>$customerID, 'csaid'=>$coffeeSelection, 'lid'=>$locations))) {
+		$querySuccess2 = true;
+		// echo("coffeeSelection inserted to Cust has csa");
+	} else {
+		echo ("<p>2 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
 	}
-}
+
+} 
+
+
 /*
 * Determine if CSA is Market share
 * If so, add customerID and balance to Cust_has_Bal table
@@ -118,7 +148,13 @@ if($membership == 3 || $membership == 4) {
 	$query = $dbo->query("SELECT price FROM CSAType WHERE csaid='$membership'");
 	if($array = $query->fetch()) {
 		$balance = $array[0];
-		$querySuccess = true;
+		// echo ("Balance: ".$balance);
+		$query = $dbo->prepare("INSERT INTO Cust_has_Bal (cid, balance) values ('$customerID','$balance')");
+		if($query->execute(array('cid'=>$customerID, 'balance'=>$balance))) {
+			$querySuccess3 = true;
+		} else {
+			echo ("<p>2 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
+		}
 	} else {
 		echo ("<p>3 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
 	}
@@ -126,6 +162,18 @@ if($membership == 3 || $membership == 4) {
 
 if($querySuccess) {
 	echo ("<p>Customer information successfully entered into database.</p>");
+	// echo ("<p>Redirecting to <a href='../main.php'>homepage</a></p>");
+}
+if($querySuccess1) {
+	echo ("<p>Cust Has CSA Membership successfully entered into database.</p>");
+	// echo ("<p>Redirecting to <a href='../main.php'>homepage</a></p>");
+}
+if($querySuccess2) {
+	echo ("<p>Cust has CSA Coffee  successfully entered into database.</p>");
+	// echo ("<p>Redirecting to <a href='../main.php'>homepage</a></p>");
+}
+if($querySuccess3) {
+	echo ("<p>Cust has marketshare balance successfully entered into database.</p>");
 	// echo ("<p>Redirecting to <a href='../main.php'>homepage</a></p>");
 }
 ?>
