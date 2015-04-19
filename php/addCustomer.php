@@ -27,9 +27,15 @@ $email = $_POST['email'];//email
 $marketing = $_POST['marketing'];//mid
 $marketingOther = $_POST['marketingOther'];//midOther
 //Workshare and Check may require an email sent to OWF and customer, respectively.
-$workshare = $_POST['workshare'];//workshare
-$check = $_POST['check'];//Not present in database
+$workshare = $_POST['workshare'];//workshare (0-1)
+$payment = $_POST['check'];//payment (0-1)
+$acknowledge = $_POST['acknowledge'];//acknowle (0-1)
 
+//Testing
+// echo ("Membership".$membership.", "."coffee".$coffeeSelection.", "."locations".$locations.", "."otherMembers".$otherMembers.", ");
+// echo ("fName".$fName.", "."lName".$lName.", "."address".$address.", "."City".$city.", "."state".$state.", "."zip".$zip.", ");
+// echo ("phone".$phone.", "."email".$email.", "."marketing".$marketing.", "."marketingOther".$marketingOther.", ");
+// echo ("workshare".$workshare.", "."payment".$payment.", "."acknowledge".$acknowledge.", end.");
 //Variables store if query was successful.
 $querySuccess;
 
@@ -38,10 +44,10 @@ require 'config.php';
 
 /*
  * Place customer information into Customer table
- * Format example: 'Harrison', 'Smith', '123 Main Street', 'Pittsburgh', 'PA', '90210', '867-5309', 'test@test.net', 'Kurt, Maggie', 3, 'Margaret', 0
+ * Format example: 'Harrison', 'Smith', '123 Main Street', 'Pittsburgh', 'PA', '90210', '412-867-5309', 'test@test.net', 'Kurt, Maggie', 3, 'Margaret', 0, 1, 1
  */
-$query = $dbo->prepare("INSERT INTO Customer(First_Name, Last_Name, Address, City, State, Zip, Phone, Email, Delegates, mid, midOther) VALUES('$fName', '$lname', '$address', '$city', '$state', '$zip', '$phone', '$email', '$otherMembers', '$mid', '$midOther')");
-if($query->execute(array('First_Name'=>$fName, 'Last_Name'=>$lName, 'Address'=>$address, 'City'=>$city, 'State'=>$state, 'Zip'=>$zip, 'Phone'=>$phone, 'Email'=>$email, 'Delegates'=>$otherMembers, 'mid'=>$marketing, 'midOther'=>$marketingOther))) {
+$query = $dbo->prepare("INSERT INTO Customer(First_Name, Last_Name, Address, City, State, Zip, Phone, Email, Delegates, mid, midOther, workshare, pay_id, aid) VALUES('$fName', '$lName', '$address', '$city', '$state', '$zip', '$phone', '$email', '$otherMembers', '$marketing', '$marketingOther', '$workshare', '$payment', '$acknowledge')");
+if($query->execute(array('First_Name'=>$fName, 'Last_Name'=>$lName, 'Address'=>$address, 'City'=>$city, 'State'=>$state, 'Zip'=>$zip, 'Phone'=>$phone, 'Email'=>$email, 'Delegates'=>$otherMembers, 'mid'=>$marketing, 'midOther'=>$marketingOther, 'workshare'=>$workshare, 'pay_id'=>$payment, 'aid'=>$acknowledge))) {
 	$customerID = $dbo->lastInsertId();
 	$querySuccess = true;
 	$result = $dbo->prepare("SELECT * FROM Customer");
@@ -59,6 +65,7 @@ if($query->execute(array('First_Name'=>$fName, 'Last_Name'=>$lName, 'Address'=>$
 	echo ("<p>1 - Error inserting Customer information into database.  Please contact Site Administrator.</p>");
 }
 
+echo ($customerID);
 /*
 * Place customerID, CSA type, and location into Cust_has_CSA table
 * Multiple entries needed if Customer has more than one CSA
@@ -119,7 +126,7 @@ if($membership == 3 || $membership == 4) {
 
 if($querySuccess) {
 	echo ("<p>Customer information successfully entered into database.</p>");
-	echo ("<p>Redirecting to <a href='../main.php'>homepage</a></p>");
+	// echo ("<p>Redirecting to <a href='../main.php'>homepage</a></p>");
 }
 ?>
 </body>

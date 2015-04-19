@@ -622,7 +622,7 @@ div.tooltip:before {
 }
 div.tooltip p {
   margin: 10px;
-  color: White;
+  color: #000;
   text-align:left;
   font-weight:normal;
 }

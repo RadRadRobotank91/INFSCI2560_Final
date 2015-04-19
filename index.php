@@ -380,7 +380,7 @@
 								</div>
 
 								<div class="row">
-									<label>Name(s) of <em>other</em> people designated to use this CSA</label><br />
+									<label>Name(s) of <em>other</em> people designated to use this CSA&nbsp;&nbsp;<span class="question delegateTT">?</span></label><br />
 									<input class="extendInput" type="text" name="otherMembers" id="otherMembers" placeholder="Your Family Member's Name, Your Friend's Name, etc." maxlength="255" value="" />
 								</div>
 
@@ -435,7 +435,7 @@
 								</div>								
 
 								<div class="row" id="paymentWarning"><strong>A $100 minimum deposit is required to reserve a membership.</strong>You must send a check within 14 days of registering or your membership will be forfeited. <br /><br />Send your check to:<br />One Woman Farm<br />PO Box 17<br />Bradford Woods, PA 15015</p></div>
-								<div class="row"><input type="checkbox" name="acknowledge" value="acknowledge" required /> By checking this box, I acknolwedge that I have read and understand the OWF CSA Membership Agreement.</div>
+								<div class="row"><input type="checkbox" name="acknowledge" value="1" required /> By checking this box, I acknolwedge that I have read and understand the OWF CSA Membership Agreement.</div>
 								<div class="row"><input type="submit" name="submit" value="Submit your CSA Registration" /></div>
 							</form>
 						</div>
