@@ -134,10 +134,10 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="admin.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="salesInfo.php"><i class="fa fa-fw fa-table"></i> Sales Information</a>
                     </li>
                     <li>
@@ -160,7 +160,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                                <i class="fa fa-dashboard"></i>  <a href="admin.php">Dashboard</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-table"></i> Sales Information
@@ -171,16 +171,18 @@
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-lg-6">
+                        <a name="transactions"></a>
                         <h2>Transactions</h2>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Transaction #</th>
-                                        <th>Customer ID</th>
-                                        <th>Amount (USD)</th>
-                                        <th>Date</th>
-										<th>Location ID</th>
+                                        <th>ID</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Purchase Total</th>
+                                            <th>Transaction Date</th>
+                                            <th>Location</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -195,14 +197,16 @@
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-lg-6">
+                        <a name="pickup"></a>
                         <h2>Pick-Ups</h2>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Customer ID</th>
-                                        <th>Date</th>
-										<th>Location ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Pick Up Date</th>
+										<th>Location</th>
                                     </tr>
                                 </thead>
                                 <tbody>
