@@ -27,22 +27,6 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!--Autocomplete-->
-    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/ui-darkness/jquery-ui.min.css" rel="stylesheet">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
- 
-        <script type="text/javascript">
-                $(document).ready(function(){
-                    $("#name").autocomplete({
-                      source:'getautocomplete.php',
-                      minLength:1,
-                      select: function(event, ui) {
-                        $('#nameid').val(ui.item.value);
-                      }
-                    });
-                });
-        </script>
 </head>
 
 <body>
@@ -112,34 +96,57 @@
                     <div class="col-lg-6">
 
                         <form role="form" action="../php/updateCustomer.php" method="POST">
-							<div class="form-group">
-                                Name : <input type="text" id="name" name="name" />
-                                <input type="hidden" name="nameid" id="nameid" />
+							<div id="name" class="form-group">
+                                Name : <input class="typeahead" type="text" placeholder="Search for Name" />
+                                <input type="hidden" value="27" name="customerID" id="customerID" />
+                                
                             </div>
 							<div class="form-group">
-                                <label>Return from autocomplete</label>
-                                <p class="form-control-static">First Name</p>
-								<p class="form-control-static">Last Name</p>
-								<p class="form-control-static">Email</p>
+                                <label>=> Example return from autocomplete: Harrison Foster - cid#27</label>
+                                <?php
+                                      require "../php/config.php";// connection to database 
+
+                                      $sql="select First_Name, Last_Name, Email from Customer WHERE cid=27"; // Query to collect data from table 
+
+                                      foreach ($dbo->query($sql) as $row) {
+                                        echo "<p class='form-control-static'>Name: $row[First_Name] $row[Last_Name]<br />Email: $row[Email]</p>";
+                                      }
+                                ?>
                             </div>
 
                             <div class="form-group">
                                 <label>Update Marketshare Balance</label>
-                                <input class="form-control" placeholder="43.00">
+                                <input class="form-control" name="amount" id="amount" placeholder="43.00">
                             </div>
 							
                             <div class="form-group">
                                 <label>Did customer make a pick-up?</label>
-                                <div class="checkbox">
+                                <div class="radio">
                                     <label>
-                                        <input type="checkbox" value="0">No
+                                        <input type="radio" name="pickup" value="0">No
                                     </label>
                                 </div>
-                                <div class="checkbox">
+                                <div class="radio">
                                     <label>
-                                        <input type="checkbox" value="1">Yes
+                                        <input type="radio" required name="pickup" value="1">Yes
                                     </label>
                                 </div>
+                                <div class="dropdown">
+                                    <?php
+                                      require "../php/config.php";// connection to database 
+
+                                      echo "<select name='location' id='location' required > 
+                                      <option value=''>Select Location</option>"; 
+
+                                      $sql="select * from CSALocation"; // Query to collect data from table 
+
+                                      foreach ($dbo->query($sql) as $row) {
+                                        echo "<option value=$row[lid]>$row[name]</option>";
+                                      }
+                                    ?>
+                                    </select>
+                                </div>
+                                    
                             </div>
 
                             <button type="submit" class="btn btn-default">Submit Button</button>
