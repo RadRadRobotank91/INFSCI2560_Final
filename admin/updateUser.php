@@ -173,10 +173,12 @@
                 <div class="row">
                     <div class="col-lg-6">
 
-                        <form role="form">
+                        <form role="form" action="../php/updateCustomer.php" method="POST">
 							<div class="form-group">
                                 <?php
 									include '../autocomplete.php';
+									//Need to display customer information
+									//Need to get customer ID
 								?>
                             </div>
 							<div class="form-group">
@@ -195,12 +197,12 @@
                                 <label>Did customer make a pick-up?</label>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">No
+                                        <input type="checkbox" value="0">No
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">Yes
+                                        <input type="checkbox" value="1">Yes
                                     </label>
                                 </div>
                             </div>
