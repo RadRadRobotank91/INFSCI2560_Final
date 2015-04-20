@@ -24,30 +24,38 @@ if($csaOne == 1 || $csaOne == 2 || $csaOne == 5 || $csaOne == 6 || $csaOne == 7 
 	//CSA or coffee, add to Cust_makes_Pickup
 	$query = $dbo->prepare("INSERT INTO Cust_makes_Pickup (cid, lid) values ('$customerID','$locationOne')");
 	$query->execute(array('cid'=>$customerID, 'lid'=>$locationOne));
-} else if($csaOne == 3 || $csaOne == 4) {
+}
+if($csaOne == 3 || $csaOne == 4) {
 	//Marketshare, update balance and add to transaction list
 	$query = $dbo->query("SELECT balance FROM Cust_has_bal WHERE cid='$customerID'");
+	print_r($query->errorInfo());
 	$array = $query->fetchAll();
 	$balance = $array[1];
 	$balance = $balance - $amount;
 	$query = $dbo->query("UPDATE Cust_has_Bal SET balance='$balance' WHERE cid='$customerID'");
+	print_r($query->errorInfo());
 	$query = $dbo->prepare("INSERT INTO Transaction (cid, tPrice, lid) values ('$customerID', '$amount', '$locationOne')");
 	$query->execute(array('cid'=>$customerID, 'tPrice'=>$amount, 'lid'=>$locationOne));
+	print_r($query->errorInfo());
 }
 //Check if csaTwo is marketshare, csa, or coffee
 if($csaTwo == 1 || $csaTwo == 2 || $csaTwo == 5 || $csaTwo == 6 || $csaTwo == 7 || $csaTwo == 8) {
 	//CSA or coffee, add to Cust_makes_Pickup
 	$query = $dbo->prepare("INSERT INTO Cust_makes_Pickup (cid, lid) values ('$customerID','$locationTwo')");
 	$query->execute(array('cid'=>$customerID, 'lid'=>$locationTwo));
-} else if($csaTwo == 3 || $csaTwo == 4) {
+}
+if($csaTwo == 3 || $csaTwo == 4) {
 	//Marketshare, update balance and add to transaction list
 	$query = $dbo->query("SELECT balance FROM Cust_has_bal WHERE cid='$customerID'");
+	print_r($query->errorInfo());
 	$array = $query->fetchAll();
 	$balance = $array[1];
 	$balance = $balance - $amount;
 	$query = $dbo->query("UPDATE Cust_has_Bal SET balance='$balance' WHERE cid='$customerID'");
+	print_r($query->errorInfo());
 	$query = $dbo->prepare("INSERT INTO Transaction (cid, tPrice, lid) values ('$customerID', '$amount', '$locationTwo')");
 	$query->execute(array('cid'=>$customerID, 'tPrice'=>$amount, 'lid'=>$locationTwo));
+	print_r($query->errorInfo());
 }
 
 $result = $dbo->prepare("SELECT * FROM Cust_makes_Pickup");
